@@ -1,33 +1,39 @@
-import {
-    Box,UnorderedList,ListItem
-  } from "@chakra-ui/react";
+import { Box, UnorderedList, ListItem } from "@chakra-ui/react";
 
-  export default function Navbar2() {
-  
-    return (
-      <>
-            <Box bg={"#ffd91c"} >
-                <Box w={'95%'} m='auto'>
-        <UnorderedList display={'flex'} fontWeight={500} listStyleType='none' justifyContent={'space-between'} w={'95%'} m='auto'>
-  <ListItem>ALL CATEGORIES</ListItem>
-  <ListItem>BOY FASHION</ListItem>
-  <ListItem>GIRL FASHION</ListItem>
-                    <ListItem>FOOTWEAR</ListItem>
-                    <ListItem>TOYS</ListItem>
-                    <ListItem>DIAPERING</ListItem>
-                    <ListItem>GEAR</ListItem>
-                    <ListItem>FEEDING</ListItem>
-                    <ListItem>BATH</ListItem>
-                    <ListItem>NURSERY</ListItem>
-                    <ListItem>MOMS</ListItem>
-                    <ListItem>HEALTH</ListItem>
-                    <ListItem>BOUTIQUES</ListItem>
-                    <ListItem>CLUB</ListItem>
-                    <ListItem>carter's</ListItem>
-</UnorderedList>
-                </Box>
-                </Box>
-      </>
-    );
-  }
-  
+export default function Navbar2() {
+  return (
+    <>
+      <Box bg={"#ffd91c"} px={4}>
+        <Box w={"95%"} m="auto">
+          <UnorderedList
+            display={{ base: "none", md: "flex" }}
+            h={16}
+            alignItems={"center"}
+            fontWeight={500}
+            listStyleType="none"
+            justifyContent={"space-between"}
+            w={"95%"}
+                      m="auto"
+                      alignContent={'center'}
+          >
+            <ListItem _hover={{bg:'white'}}>ALL CATEGORIES</ListItem>
+            <ListItem _hover={{bg:'white'}}>BOY FASHION</ListItem>
+            <ListItem _hover={{bg:'white'}}>GIRL FASHION</ListItem>
+            <ListItem _hover={{bg:'white'}}>FOOTWEAR</ListItem>
+            <ListItem _hover={{bg:'white'}}>TOYS</ListItem>
+            <ListItem _hover={{bg:'white'}}>DIAPERING</ListItem>
+            <ListItem _hover={{bg:'white'}}>GEAR</ListItem>
+            <ListItem _hover={{bg:'white'}}>FEEDING</ListItem>
+            <ListItem _hover={{bg:'white'}}>BATH</ListItem>
+            <ListItem _hover={{bg:'white'}}>NURSERY</ListItem>
+            <ListItem _hover={{bg:'white'}}>MOMS</ListItem>
+            <ListItem _hover={{bg:'white'}}>HEALTH</ListItem>
+            <ListItem _hover={{bg:'white'}}>BOUTIQUES</ListItem>
+            <ListItem _hover={{bg:'white',h:'full'}} textAlign='center'>CLUB</ListItem>
+            <ListItem  bg="skyblue" color={'white'} h='full' >carter's</ListItem>
+          </UnorderedList>
+        </Box>
+      </Box>
+    </>
+  );
+}
