@@ -2,10 +2,10 @@ const express = require("express")
 const { Admin } = require("../model/admin.model")
 const adminRouter = express.Router()
 const validate = require("validate");
-const toast = require("react-toastify");
-const { hash } = require("bcrypt");
+// const toast = require("react-toastify");
+// const { hash } = require("bcrypt");
 
-adminRouter.post("/", async(req, res) => {
+adminRouter.post("/adminregister", async(req, res) => {
     try{
         const { error } = validate(req.body);
         if(error) {
@@ -27,6 +27,6 @@ adminRouter.post("/", async(req, res) => {
 })
 
 
-module.exports = {
+module.exports = { 
     adminRouter
 }

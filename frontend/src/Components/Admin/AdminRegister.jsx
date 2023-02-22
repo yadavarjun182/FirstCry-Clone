@@ -1,24 +1,10 @@
-import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    HStack,
-    InputRightElement,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-    Link,
-  } from '@chakra-ui/react';
-  import { useState } from 'react';
-  import { useNavigate } from "react-router-dom";
-  import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text, useColorModeValue, Link } from '@chakra-ui/react';
+import { useState } from 'react';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   
-  export default function SignupCard() {
+export default function AdminRegister() {
     const [showPassword, setShowPassword] = useState(false);
     const [data, setData] = useState({
         firstName: "",
@@ -29,7 +15,28 @@ import {
     });
     const [error, setError] = useState("");
     const navigate = useNavigate();
-  
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]: input.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const url = "http://localhost:7300/admin/adminregister";
+            const { data: res } = await axios.post(url, data);
+            navigate("/login");
+            console.log(res.message);
+        } catch(error) {
+            if(
+                error.response && 
+                error.response.status >= 400 && 
+                error.response.status <= 500
+                ){
+                setError(error.response.data.message);
+            }
+        }
+    };
     return (
       <Flex
         minH={'100vh'}
@@ -39,10 +46,9 @@ import {
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'}>
-              Sign up
+              Admin Register
             </Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool features ✌️
             </Text>
           </Stack>
           <Box
@@ -89,9 +95,11 @@ import {
                 </InputGroup>
               </FormControl>
               <Stack spacing={10} pt={2}>
+              {error && <div className="error_msg">{error}</div>}
                 <Button
                   loadingText="Submitting"
                   size="lg"
+                  onClick={handleSubmit}
                   bg={'blue.400'}
                   color={'white'}
                   _hover={{
@@ -110,4 +118,4 @@ import {
         </Stack>
       </Flex>
     );
-  }
+}
