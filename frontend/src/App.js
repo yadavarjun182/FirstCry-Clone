@@ -1,9 +1,11 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+import { AccoutDetails } from './pages/AccountDetails/AccoutDetails';
 
 function App() {
   return (
-    <div></div>
+    <div> </div>
   );
 }
 
