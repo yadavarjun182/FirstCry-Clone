@@ -1,16 +1,23 @@
 const express = require("express")
-const {userRouter}= require("./routes/user.route")
+
+const {userRouter}= require("./routes/user.route.js")
+const {connection} = require('./config/db.js')
+const { adminRouter } = require("./routes/admin.register.route");
 const app = express()
 
+
+
 app.use(express.json())
-app.use("/users",userRouter)
+app.use("/users", userRouter)
+app.use("/admin", adminRouter)
 
 
 app.listen(7300, async () => {
     try {
         await connection
+        console.log('connected to dbs')
     } catch (err) {
-        console.log("error something")
+        console.log({'err':err})
     }
     console.log("server running at 7300")
 })

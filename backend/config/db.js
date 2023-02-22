@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const connection = mongoose.connect("mongodb+srv://arjun:arjun@cluster0.3wtn3cm.mongodb.net/firstcry?retryWrites=true&w=majority")
+const connection = mongoose.connect("mongodb+srv://vikesh:sector4e90@cluster0.tiwvvgy.mongodb.net/Firstcry?retryWrites=true&w=majority")
 
 
 module.exports = { connection }
