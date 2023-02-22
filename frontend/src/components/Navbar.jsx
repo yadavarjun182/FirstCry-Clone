@@ -11,7 +11,8 @@ import {
   UnorderedList,Image,Input
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-
+import {GoLocation} from 'react-icons/go';
+import {AiOutlineHeart,AiOutlineShoppingCart} from 'react-icons/ai';
 const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = ({ children }) => (
@@ -34,7 +35,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue("white.100", "white")} px={4}>
+      <Box bg={useColorModeValue("white.100", "white")} px={4} border={'1px'}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -54,15 +55,15 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <UnorderedList display={"flex"} listStyleType="none" gap={2} fontSize={14}>
-              <ListItem>Select location |</ListItem>
+            <UnorderedList display={{ base: "none", md: "flex" }} listStyleType="none" gap={2} fontSize={12}>
+              <ListItem display={'flex'} gap={1}><GoLocation/> Select location |</ListItem>
               <ListItem>Stores & Preschools |</ListItem>
               <ListItem>Support |</ListItem>
               <ListItem>Track Order</ListItem>
               <ListItem>FirstCry Parenting |</ListItem>
               <ListItem>Login/Register |</ListItem>
-              <ListItem>Shorlist |</ListItem>
-              <ListItem>Cart</ListItem>
+              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart/> Shorlist |</ListItem>
+              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart/> Cart</ListItem>
             </UnorderedList>
           </Flex>
         </Flex>
