@@ -8,11 +8,11 @@ import {
   useColorModeValue,
   Stack,
   ListItem,
-  UnorderedList,Image,Input
+  UnorderedList,Image,Input,InputGroup,InputRightAddon
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {GoLocation} from 'react-icons/go';
-import {AiOutlineHeart,AiOutlineShoppingCart} from 'react-icons/ai';
+import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
 const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = ({ children }) => (
@@ -50,8 +50,11 @@ export default function Navbar() {
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
-            >
+                      >
+                          <InputGroup>
                           <Input placeholder="Search for a Category, Brand or Product" w={400} />
+                              <InputRightAddon children={<AiOutlineSearch/>} />
+                          </InputGroup>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
