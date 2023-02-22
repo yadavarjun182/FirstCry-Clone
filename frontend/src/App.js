@@ -1,9 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import FooterPage from "./pages/FooterPage";
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <FooterPage />
+    </div>
   );
 }
 
