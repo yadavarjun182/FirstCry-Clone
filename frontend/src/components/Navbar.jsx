@@ -51,7 +51,7 @@ export default function Navbar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <Input />
+                          <Input placeholder="Search for a Category, Brand or Product" w={400} />
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
