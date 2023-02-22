@@ -44,7 +44,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Image src=''/>
+            <Image src='../logo.png' w='90px'/>
             <HStack
               as={"nav"}
               spacing={4}
