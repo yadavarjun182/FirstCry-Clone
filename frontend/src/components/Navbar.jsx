@@ -51,9 +51,9 @@ export default function Navbar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
                       >
-                          <InputGroup>
-                          <Input placeholder="Search for a Category, Brand or Product" w={400} />
-                              <InputRightAddon children={<AiOutlineSearch/>} />
+                          <InputGroup border={'1px solid lightgray'} borderRadius='10px' w={'auto'}>
+                              <Input placeholder="Search for a Category, Brand or Product" w={{base:"auto",lg:350}} border={'none'} fontSize={12} />
+                              <InputRightAddon children={<AiOutlineSearch fontSize={22} color='#c2aa30'/>} bg='transparent' border={'none'} />
                           </InputGroup>
             </HStack>
           </HStack>
