@@ -1,5 +1,5 @@
-import { Box, UnorderedList, ListItem } from "@chakra-ui/react";
-
+import { Box, UnorderedList } from "@chakra-ui/react";
+import {Link} from "react-router-dom"
 export default function Navbar2() {
   return (
     <>
@@ -16,21 +16,21 @@ export default function Navbar2() {
                       m="auto"
                       alignContent={'center'}
           >
-            <ListItem _hover={{bg:'white'}}>ALL CATEGORIES</ListItem>
-            <ListItem _hover={{bg:'white'}}>BOY FASHION</ListItem>
-            <ListItem _hover={{bg:'white'}}>GIRL FASHION</ListItem>
-            <ListItem _hover={{bg:'white'}}>FOOTWEAR</ListItem>
-            <ListItem _hover={{bg:'white'}}>TOYS</ListItem>
-            <ListItem _hover={{bg:'white'}}>DIAPERING</ListItem>
-            <ListItem _hover={{bg:'white'}}>GEAR</ListItem>
-            <ListItem _hover={{bg:'white'}}>FEEDING</ListItem>
-            <ListItem _hover={{bg:'white'}}>BATH</ListItem>
-            <ListItem _hover={{bg:'white'}}>NURSERY</ListItem>
-            <ListItem _hover={{bg:'white'}}>MOMS</ListItem>
-            <ListItem _hover={{bg:'white'}}>HEALTH</ListItem>
-            <ListItem _hover={{bg:'white'}}>BOUTIQUES</ListItem>
-            <ListItem _hover={{bg:'white',h:'full'}} textAlign='center'>CLUB</ListItem>
-            <ListItem  bg="skyblue" color={'white'} h='full' >carter's</ListItem>
+            <Link to='#' _hover={{bg:'white'}}>ALL CATEGORIES</Link>
+            <Link to='#' _hover={{bg:'white'}}>BOY FASHION</Link>
+            <Link to='#' _hover={{bg:'white'}}>GIRL FASHION</Link>
+            <Link to='#' _hover={{bg:'white'}}>FOOTWEAR</Link>
+            <Link to='#' _hover={{bg:'white'}}>TOYS</Link>
+            <Link to='#' _hover={{bg:'white'}}>DIAPERING</Link>
+            <Link to='#' _hover={{bg:'white'}}>GEAR</Link>
+            <Link to='#' _hover={{bg:'white'}}>FEEDING</Link>
+            <Link to='#' _hover={{bg:'white'}}>BATH</Link>
+            <Link to='#' _hover={{bg:'white'}}>NURSERY</Link>
+            <Link to='#' _hover={{bg:'white'}}>MOMS</Link>
+            <Link to='#' _hover={{bg:'white'}}>HEALTH</Link>
+            <Link to='#' _hover={{bg:'white'}}>BOUTIQUES</Link>
+            <Link to='#' _hover={{bg:'white',h:'full'}} textAlign='center'>CLUB</Link>
+            <Link to='#'  bg="skyblue" color={'white'} h='full' >carter's</Link>
           </UnorderedList>
         </Box>
       </Box>
