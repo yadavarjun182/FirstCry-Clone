@@ -13,6 +13,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {GoLocation} from 'react-icons/go';
 import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
+import Navbar2 from "./Navbar2";
 const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = ({ children }) => (
@@ -81,8 +82,7 @@ export default function Navbar() {
           </Box>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
+<Navbar2/>
     </>
   );
 }

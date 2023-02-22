@@ -35,7 +35,7 @@ import {
   
     return (
       <>
-        <Box bg={useColorModeValue("white.100", "white")} px={4} >
+        <Box bg={useColorModeValue("#ffd91c", "#ffd91c")} px={4} >
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"} w='95%' m='auto'>
             <IconButton
               size={"md"}
@@ -82,7 +82,7 @@ import {
           ) : null}
         </Box>
   
-        <Box p={4}>Main Content Here</Box>
+
       </>
     );
   }
