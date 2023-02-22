@@ -1,4 +1,4 @@
-import { Box, UnorderedList } from "@chakra-ui/react";
+import { Box, UnorderedList,Text } from "@chakra-ui/react";
 import {Link} from "react-router-dom"
 export default function Navbar2() {
   return (
@@ -30,7 +30,7 @@ export default function Navbar2() {
             <Link to='#' _hover={{bg:'white'}}>HEALTH</Link>
             <Link to='#' _hover={{bg:'white'}}>BOUTIQUES</Link>
             <Link to='#' _hover={{bg:'white',h:'full'}} textAlign='center'>CLUB</Link>
-            <Link to='#'  bg="skyblue" color={'white'} h='full' >carter's</Link>
+            <Link to='#'><Text bg="skyblue" color={'white'} p={4} textAlign='center' fontSize={21}>carter's</Text></Link>
           </UnorderedList>
         </Box>
       </Box>
