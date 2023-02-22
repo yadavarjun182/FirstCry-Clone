@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   Stack,
   ListItem,
-  UnorderedList,Image
+  UnorderedList,Image,Input
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("white.100", "white")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -43,27 +43,25 @@ export default function Navbar() {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={"center"}>
+          <HStack spacing={5} alignItems={"center"}>
             <Image src='../logo.png' w='90px'/>
             <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+              <Input />
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <UnorderedList display={"flex"} listStyleType="none">
-              <ListItem>Select location</ListItem>
-              <ListItem>Stores & Preschools</ListItem>
-              <ListItem>Support</ListItem>
+            <UnorderedList display={"flex"} listStyleType="none" gap={2} fontSize={14}>
+              <ListItem>Select location |</ListItem>
+              <ListItem>Stores & Preschools |</ListItem>
+              <ListItem>Support |</ListItem>
               <ListItem>Track Order</ListItem>
-              <ListItem>FirstCry Parenting</ListItem>
-              <ListItem>Login/Register</ListItem>
-              <ListItem>Shorlist</ListItem>
+              <ListItem>FirstCry Parenting |</ListItem>
+              <ListItem>Login/Register |</ListItem>
+              <ListItem>Shorlist |</ListItem>
               <ListItem>Cart</ListItem>
             </UnorderedList>
           </Flex>
