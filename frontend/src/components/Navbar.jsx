@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   Stack,
   ListItem,
-  UnorderedList,
+  UnorderedList,Image
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
@@ -44,7 +44,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Image src=''/>
             <HStack
               as={"nav"}
               spacing={4}
@@ -56,11 +56,15 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <UnorderedList>
-              <ListItem>Lorem ipsum dolor sit amet</ListItem>
-              <ListItem>Consectetur adipiscing elit</ListItem>
-              <ListItem>Integer molestie lorem at massa</ListItem>
-              <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+            <UnorderedList display={"flex"} listStyleType="none">
+              <ListItem>Select location</ListItem>
+              <ListItem>Stores & Preschools</ListItem>
+              <ListItem>Support</ListItem>
+              <ListItem>Track Order</ListItem>
+              <ListItem>FirstCry Parenting</ListItem>
+              <ListItem>Login/Register</ListItem>
+              <ListItem>Shorlist</ListItem>
+              <ListItem>Cart</ListItem>
             </UnorderedList>
           </Flex>
         </Flex>
