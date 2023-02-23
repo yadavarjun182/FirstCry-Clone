@@ -1,5 +1,5 @@
 import React from "react";
-import { Box,Text,Input,Flex,Radio,Image,SimpleGrid } from '@chakra-ui/react';
+import { Box,Text,Input} from '@chakra-ui/react';
 
 
 export const User = () => {
