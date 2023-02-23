@@ -39,8 +39,8 @@ export default function Navbar2()
                       m="auto"
                       alignContent={'center'}
           >
-            <Text  _hover={{bg:'white'}}>ALL CATEGORIES</Text>
-                      <Text _hover={{bg: 'white'}} onClick={handleClick}>BOY FASHION</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>ALL CATEGORIES</Text>
+                      <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick}>BOY FASHION</Text>
                       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
@@ -52,7 +52,7 @@ export default function Navbar2()
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-                      <Text _hover={{bg: 'white'}} onClick={handleClick2}>GIRL FASHION</Text>
+                      <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick2}>GIRL FASHION</Text>
                       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
@@ -64,17 +64,17 @@ export default function Navbar2()
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-            <Text  _hover={{bg:'white'}}>FOOTWEAR</Text>
-            <Text  _hover={{bg:'white'}}>TOYS</Text>
-            <Text  _hover={{bg:'white'}}>DIAPERING</Text>
-            <Text  _hover={{bg:'white'}}>GEAR</Text>
-            <Text  _hover={{bg:'white'}}>FEEDING</Text>
-            <Text  _hover={{bg:'white'}}>BATH</Text>
-            <Text  _hover={{bg:'white'}}>NURSERY</Text>
-            <Text  _hover={{bg:'white'}}>MOMS</Text>
-            <Text  _hover={{bg:'white'}}>HEALTH</Text>
-            <Text  _hover={{bg:'white'}}>BOUTIQUES</Text>
-            <Text  _hover={{bg:'white',h:'full'}} textAlign='center'>CLUB</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>FOOTWEAR</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>TOYS</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>DIAPERING</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>GEAR</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>FEEDING</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>BATH</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>NURSERY</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>MOMS</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>HEALTH</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}}>BOUTIQUES</Text>
+            <Text  _hover={{bg:'white',p:'20px 2px'}} textAlign='center'>CLUB</Text>
             <Text bg="skyblue" color={'white'} p={4} textAlign='center' fontSize={21}>carter's</Text>
           </UnorderedList>
         </Box>
