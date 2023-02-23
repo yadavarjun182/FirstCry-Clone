@@ -1,8 +1,10 @@
 const express = require("express")
+var cors = require('cors')
 const { UserModel } = require("../model/user.model")
 const userRouter = express.Router()
 const jwt=require("jsonwebtoken")
 const bcrypt = require('bcrypt')
+
 
 userRouter.get("/", (req, res) => {
     res.send("all users")
@@ -49,7 +51,7 @@ userRouter.post('/login',async(req,res)=>{
         if(user.length > 0 ){
               bcrypt.compare(password, user[0].password, (err, result)=> {
               if(result){
-              let token = jwt.sign({ uderId:user[0]._id }, 'masai');
+              let token = jwt.sign({ userId:user[0]._id }, 'firstcry');
               res.send({'msg':'user login !',"token":token})
               }
               else{
