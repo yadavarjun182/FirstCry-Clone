@@ -41,17 +41,7 @@ export default function Navbar2()
           >
             <Text  _hover={{bg:'white',p:'20px 2px'}}>ALL CATEGORIES</Text>
                       <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick}>BOY FASHION</Text>
-                      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
-          <DrawerBody>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+                
                       <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick2}>GIRL FASHION</Text>
                       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
