@@ -1,29 +1,9 @@
-import { Box, UnorderedList,Text, useDisclosure } from "@chakra-ui/react";
-//import {Text} from "react-router-dom";
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-  } from '@chakra-ui/react'
+import { Box, UnorderedList,Text } from "@chakra-ui/react";
+
 import React from "react";
 export default function Navbar2()
 {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [placement, setPlacement] = React.useState('top')
-  
-    const handleClick=() =>
-    {
-        onOpen()
-    }
-    
-    const handleClick2=() =>
-    {
-        onOpen()
-    }
+   
   return (
     <>
       <Box bg={"#ffd91c"} px={4}>
@@ -40,20 +20,10 @@ export default function Navbar2()
                       alignContent={'center'}
           >
             <Text  _hover={{bg:'white',p:'20px 2px'}}>ALL CATEGORIES</Text>
-                      <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick}>BOY FASHION</Text>
+                      <Text _hover={{bg: 'white',p:'20px 2px'}} >BOY FASHION</Text>
                 
-                      <Text _hover={{bg: 'white',p:'20px 2px'}} onClick={handleClick2}>GIRL FASHION</Text>
-                      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
-          <DrawerBody>
-            <p>Some contents...jjdj</p>
-            <p>Some contents...dfhdf</p>
-            <p>Some contentsdfhdh...</p>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+                      <Text _hover={{bg: 'white',p:'20px 2px'}} >GIRL FASHION</Text>
+                
             <Text  _hover={{bg:'white',p:'20px 2px'}}>FOOTWEAR</Text>
             <Text  _hover={{bg:'white',p:'20px 2px'}}>TOYS</Text>
             <Text  _hover={{bg:'white',p:'20px 2px'}}>DIAPERING</Text>
