@@ -1,7 +1,8 @@
 import React,{useState} from "react";
 import { Box,Image,Text,Input,FormLabel,Divider} from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
-import logo from '../../images/logo_type1.jpg'
+import logo from '../../images/logo_type1.jpg';
 
 let user = {
  email:'',
@@ -9,8 +10,9 @@ let user = {
 }
 export const Login = () => {
   const [User,setUser] = useState(user)
+  const toast = useToast()
 
-  const GotoRegister = async(payload) => {
+  const GotoLogin = async(payload) => {
       //console.log(payload)
       fetch('http://localhost:7300/users/login',{
         method:'POST',
@@ -19,7 +21,16 @@ export const Login = () => {
         },
         body:JSON.stringify(payload)
     }).then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => {
+        console.log(res)
+        localStorage.setItem('token',res.token)
+        toast({
+          title: res.msg || res.err,
+          position: "top",
+          isClosable: true,
+          status: res.msg ?'success':'warning'
+        })
+    })
     .catch(err => console.log(err))
   }
 
@@ -31,7 +42,7 @@ export const Login = () => {
 
   const handelsubmit = (event) => {
     event.preventDefault()
-    GotoRegister(User)
+    GotoLogin(User)
     setUser(user)
   } 
 
