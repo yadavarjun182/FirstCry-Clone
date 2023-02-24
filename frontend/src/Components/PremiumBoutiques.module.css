@@ -1,0 +1,111 @@
+.heading {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 1rem;
+  /* background-color: wheat; */
+}
+.mainDivPremiumBoutiques {
+  background-color: #eeeeee;
+  text-align: center;
+  margin: auto;
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 1rem 0;
+  /* border: 2px solid red; */
+}
+.carddivmaster {
+  width: 85%;
+  /* border: 2px solid red; */
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+@media only screen and (max-width: 800px) {
+  .carddivmaster {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .carddivmaster {
+    grid-template-columns: 1fr;
+  }
+}
+.premiumCard {
+  position: relative;
+  width: 25rem;
+  /* height: 300px; */
+  border-radius: 10px;
+  /* padding: 30px 50px; */
+  background: #fff;
+  transition: 0.3s;
+}
+.premiumCard:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  width: 25.1rem;
+}
+.premiumimgbox {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+}
+.premiumimgbox img {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+.premiumContent {
+  /* border: 1px solid red; */
+  padding: 1rem;
+}
+.premiumContent > h2 {
+  text-align: left;
+}
+.premiumContent > p {
+  display: flex;
+  justify-content: space-between;
+}
+.premiumContent > p > :nth-child(1) {
+  color: rgb(164, 164, 164);
+}
+.premiumContent > p > :nth-child(2) {
+  color: red;
+  text-transform: uppercase;
+}
+.ViewallPremiumBrand {
+  /* border: 1px solid red; */
+  margin-top: 2rem;
+}
+.ViewallPremiumBrand {
+  width: 82%;
+  margin: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.ViewallPremiumBrand > button {
+  padding: 1rem;
+  width: 48%;
+  background-color: white;
+  font-size: 1.3rem;
+  color: rgb(154, 149, 149);
+}
+.ViewallPremiumBrand > button:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+}
+.Spring23 {
+  width: 86%;
+  margin: auto;
+}
+.Spring23 > img {
+  width: 100%;
+}
+.largeBanner {
+  width: 86%;
+  /* border: 1px solid red; */
+  margin: auto;
+}
+.largeBanner > img {
+  width: 100%;
+}

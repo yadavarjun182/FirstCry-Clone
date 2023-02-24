@@ -1,0 +1,25 @@
+.masterDiv {
+  width: 100%;
+  margin: auto;
+  background-color: #f4f4f4;
+}
+.mainDiv {
+  width: 85.5%;
+  background-color: white;
+  margin: auto;
+  /* border: 1px solid black; */
+}
+.mainDiv > img {
+  width: 100%;
+}
+.imgCardDivs {
+  display: flex;
+  width: 85.5%;
+  margin: auto;
+}
+.BelovedCardDivs {
+  width: 85.5%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}

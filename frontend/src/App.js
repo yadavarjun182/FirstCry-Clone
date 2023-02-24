@@ -1,10 +1,10 @@
 import "./App.css";
-import FooterPage from "./pages/FooterPage";
+import Home from "./pages/home";
 
 function App() {
   return (
     <div>
-      <FooterPage />
+      <Home />
     </div>
   );
 }
