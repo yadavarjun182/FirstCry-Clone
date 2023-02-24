@@ -6,16 +6,18 @@ import './App.css';
 import {Register} from './pages/Authantication/signup'
 import { Login } from './pages/Authantication/Login';
 import FooterPage from "./pages/FooterPage";
+import { Cart } from './pages/Cart';
 
 import ProductsPage from "./pages/ProductsA/ProductsPage";
 
 import { AccoutDetails } from './pages/AccountDetails/AccoutDetails'
 
 function App() {
+
+  
   return (
     <div>
-      <ProductsPage />
-      <FooterPage />
+      <Cart/>
     </div>
   );
 }
