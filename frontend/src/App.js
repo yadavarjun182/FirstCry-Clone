@@ -1,9 +1,9 @@
 
 import "./App.css";
-import Home from "./pages/home";
+// import Home from "./pages/home";
 
 import './App.css';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import FooterPage from "./pages/FooterPage";
 
 
@@ -12,18 +12,16 @@ import ProductsPage from "./pages/ProductsA/ProductsPage";
 
 function App() {
 
-  
+
   return (
 
     <div>
-      <Home />
-
-
+      {/* <Home /> */}
       <div>
-      <Navbar/>
-      <ProductsPage />
-      <FooterPage />
-
+        {/* <Navbar /> */}
+        <ProductsPage />
+        <FooterPage />
+      </div>
     </div>
   );
 }

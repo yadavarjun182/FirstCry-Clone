@@ -4,7 +4,7 @@
   background-color: #ffffff;
   margin: 0px 0px 50px;
   border: 2px solid red;
-  height: 500px;
+  /* height: 500px; */
   width: 993px;
   margin: auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -41,14 +41,14 @@
 .left_sec {
   border: 2px solid purple;
   height: 100px;
-  width: 25%;
+  width: 22%;
 }
 
 .right_sec {
   margin: 0px 0px 0px 40px;
   /* height: 100px; */
   border: 2px solid purple;
-  width: 75%;
+  width: 78%;
 }
 
 .right_heading2 {
@@ -68,8 +68,6 @@
   font-size: 12px;
   margin: 9px 0px 6px;
   border: 1px solid grey;
-}
-.head_bottom {
 }
 
 .sortby_dropdown {
@@ -106,7 +104,7 @@
   width: 98%;
   margin: auto;
   border: 5px solid black;
-  height: 200px;
+  /* height: 200px; */
 }
 
 .prods_sec {
@@ -119,3 +117,53 @@
   width: 100/3%;
   border: 1px solid darkblue;
 }
+
+.imgdim {
+  height: 265px;
+  width: 218px;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.prodtitle h3 {
+  font-size: 12px;
+  font-weight: 400;
+  width: 95%;
+  margin: auto;
+}
+
+.bothprices {
+  display: flex;
+  gap: 20px;
+}
+
+.prodprice p {
+  font-size: 14px;
+  color: #575757;
+  font-weight: bold;
+}
+
+.addbtn {
+  margin-top: 8px;
+  background-color: rgb(237, 103, 54);
+  height: 36px;
+  width: 115px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.addbtn h3 {
+  color: white;
+  font-size: 16px;
+  /* display: flex; */
+  text-align: center;
+}
+/* .addbtn h3 {
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
