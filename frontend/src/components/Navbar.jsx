@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -13,6 +12,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {GoLocation} from 'react-icons/go';
 import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
+import {Link} from "react-router-dom";
 import Navbar2 from "./Navbar2";
 const Links = ["Dashboard", "Projects", "Team"];
 
@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue("white.100", "white")} px={4} >
+      <Box bg={'white'} px={4} position='sticky' top={0} zIndex={9999}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"} w='95%' m='auto'>
           <IconButton
             size={"md"}
@@ -46,7 +46,9 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={5} alignItems={"center"}>
-            <Image src='../logo.png' w='90px'/>
+                      <Link to={'/'}>
+                      <Image src='../logo.png' w='90px' />
+                      </Link>
             <HStack
               as={"nav"}
               spacing={4}
@@ -65,9 +67,13 @@ export default function Navbar() {
               <ListItem>Support |</ListItem>
               <ListItem>Track Order</ListItem>
               <ListItem>FirstCry Parenting |</ListItem>
-              <ListItem>Login/Register |</ListItem>
-              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart/> Shorlist |</ListItem>
+                          <Link to={'/login'}>
+                          <ListItem>Login/Register |</ListItem>
+                          </Link>
+                          <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart /> Shorlist |</ListItem>
+                          <Link to={'/cart'}>
               <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart/> Cart</ListItem>
+                          </Link>
             </UnorderedList>
           </Flex>
         </Flex>

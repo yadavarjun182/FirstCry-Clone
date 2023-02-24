@@ -1,14 +1,9 @@
 
 import "./App.css";
-import Home from "./pages/home";
-
-import './App.css';
 import Navbar from './components/Navbar';
 import FooterPage from "./pages/FooterPage";
 
-
-import { Cart } from './pages/Cart';
-import ProductsPage from "./pages/ProductsA/ProductsPage";
+import {AllRouts} from "./V_AllRouts/Allrouts";
 
 function App() {
 
@@ -16,12 +11,8 @@ function App() {
   return (
 
     <div>
-      <Home />
-
-
-      <div>
       <Navbar/>
-      <ProductsPage />
+      <AllRouts/>
       <FooterPage />
 
     </div>
