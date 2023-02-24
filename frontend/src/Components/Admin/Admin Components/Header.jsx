@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import { Image, Title } from "@chakra-ui/react"; 
 
-const Header = () => {
+function Header() {
+
   return (
-    <div>Header</div>
-  )
+    <div className="AppHeader">
+      <Image
+        width={40}
+        src="https://yt3.ggpht.com/ytc/AMLnZu83ghQ28n1SqADR-RbI2BGYTrqqThAtJbfv9jcq=s176-c-k-c0x00ffffff-no-rj"
+      ></Image>
+      <Title>Admin Dashboard</Title>
+    </div>
+  );
 }
-
-export default Header
+export default Header;

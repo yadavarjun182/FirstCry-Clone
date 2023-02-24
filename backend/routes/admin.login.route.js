@@ -28,12 +28,12 @@ adminRouter.post("/adminlogin", async (req, res) => {
     }
 });
 
-const validate = (data) => {
-    const schema = joi.object({
-        email: Joi.string().email().required().label("Email"),
-        password: Joi.string().required().label("Password"),
-    });
-    return schema.validate(data);
-}
+// const validate = (data) => {
+//     const schema = joi.object({
+//         email: Joi.string().email().required().label("Email"),
+//         password: Joi.string().required().label("Password"),
+//     });
+//     return schema.validate(data);
+// }
 
 module.exports = { adminRouter };
