@@ -1,3 +1,4 @@
+
 import React from "react";
 import Slider from "../components/carsole/Slidersection";
 import PosterGirlBoy from "../components/PosterGirlBoy";
@@ -18,3 +19,14 @@ const Home = () => {
 };
 
 export default Home;
+
+import React from 'react'
+
+const home = () => {
+  return (
+    <div>home</div>
+  )
+}
+
+export default home
+
