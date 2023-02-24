@@ -1,0 +1,165 @@
+.container {
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+  /* height: 3000px; */
+  padding-left: 110px;
+  padding-right: 110px;
+}
+.smallcontainer {
+  background-color: white;
+  /* padding: 10px; */
+}
+
+.imgdiv {
+  display: flex;
+}
+.imgdiv img {
+  height: 570px;
+  width: 650px;
+}
+.agediv {
+  display: flex;
+  gap: 27px;
+  justify-content: center;
+  align-items: center;
+}
+.agediv img {
+  height: 110px;
+  width: 160px;
+  font-weight: bold;
+}
+.cardiv {
+  display: flex;
+}
+.cardiv img {
+  height: 350px;
+  width: 300px;
+}
+
+.girldiv {
+  display: flex;
+  gap: 0px;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: repeat(3,1fr); */
+  /* row-gap: 0px; */
+}
+.down {
+  margin-top: -5px;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+}
+.girldiv img {
+  height: 260px;
+  width: 215px;
+}
+.branddiv {
+  display: flex;
+  flex-direction: column;
+}
+.branddiv img {
+  height: 120px;
+  width: 160px;
+}
+
+.sportdiv img {
+  height: 430px;
+  width: 256px;
+}
+.smallbabyCard img {
+  height: 420px;
+  width: 321px;
+}
+.watchdiv img {
+  width: 161px;
+  height: 270px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    /* height: 3000px; */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .smallcontainer {
+    background-color: white;
+    /* padding: 10px; */
+  }
+
+  .imgdiv {
+    display: flex;
+  }
+  .imgdiv img {
+    height: 210px;
+    width: 165px;
+  }
+  .agediv {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+  }
+  .agediv img {
+    height: 55px;
+    width: 50px;
+    font-weight: bold;
+  }
+  .cardiv {
+    display: flex;
+  }
+  .cardiv img {
+    height: 120px;
+    width: 68px;
+  }
+
+  .girldiv {
+    display: flex;
+    gap: 0px;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: repeat(3,1fr); */
+    /* row-gap: 0px; */
+  }
+  .down {
+    margin-top: -5px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+  .girldiv img {
+    height: 80px;
+    width: 55px;
+  }
+  .branddiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .branddiv img {
+    height: 120px;
+    width: 160px;
+  }
+
+  .sportdiv img {
+    height: 430px;
+    width: 256px;
+  }
+  .smallbabyCard img {
+    height: 100px;
+    width: 321px;
+  }
+
+  .watchdiv img {
+    width: 161px;
+    height: 270px;
+  }
+}
