@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Box,Flex,Image,Text,Divider,Button,Radio} from '@chakra-ui/react';
 
 import { BiRupee } from "react-icons/bi";
@@ -9,70 +9,87 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import { GiCardPickup } from "react-icons/gi";
 import { MdRecycling } from "react-icons/md";
 
-let pro = [{
-    name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
-    price:6196.90,
-    quantity:2,
-    img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
-    discount:35
-},
-{
-    name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
-    price:6196.90,
-    quantity:2,
-    img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
-    discount:35
-}
-]
+// let pro = [
+// {
+//     name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
+//     price:6196.90,
+//     quantity:1,
+//     img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
+//     discount:35
+// },
+// {
+//     name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
+//     price:6196.90,
+//     quantity:1,
+//     img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
+//     discount:35
+// }
+// ]
 
 
 
 export const Cart = () => {
 
+   const [pro,setPro] = useState([])
 
-// let date = new Date()
-// console.log(date)
+   const handelDelete = (id) => {
+         console.log(id)
+   }
 
-
-const handelDelete = (e) => {
-    console.log(e)
+const GetCart = async() => {
+      fetch('http://localhost:7300/cart/',{
+         headers:{
+            "authorization":localStorage.getItem('token') //***To varify token*** */
+            },
+            body:JSON.stringify()
+      }).then(res => res.json())
+        .then(res => {
+                 console.log(res)
+                 setPro(res)
+               })
+        .catch(err => console.log(err))
 }
 
-    return(
-       <Box bg='#f8f8f8' >
 
-         <Flex w='90%' m='auto'  pt='20px'justifyContent='space-around'>
-         <Box w='60%'  p='10px' bg='blue' boxShadow='xs' rounded='md' >
+useEffect(()=>{
+  GetCart()
+},[])
+
+
+    return(
+       <Box bg='#f3f3f3' pb='30px' pt='40px'>
+
+         <Flex w='90%' m='auto' justifyContent='space-around' flexDirection={{base:'column',md:'row'}} >
+         <Box w={{base:'100%',md:'60%'}} m='auto' p='10px' boxShadow='xs' rounded='md' bg='white'>
             {pro && pro.map((ele,i)=>(
             <Box key={i} mb='20px'>
-                <Flex gap='20px' p='10px'  borderBottom='1px solid gray' borderTop='1px solid gray'>
+                <Flex gap='20px' p='10px' flexDirection={{base:'column',md:'row'}}  borderBottom='1px solid gray' borderTop='1px solid gray' >
 
-                    <Box w='18%' p='10px'>
+                    <Box w={{base:'90%',md:'18%'}} p='10px'>
                      <Image m='auto' w='100%' src={ele.img} alt={ele.name} />
                     </Box>
 
-                    <Box w='60%'>
+                    <Box w={{base:'100%',md:'60%'}}>
                      <Text as='b'>{ele.name}</Text>
                      <Flex alignItems='center' gap='5px'><CiDeliveryTruck/> <Text>Get it by</Text>   <Text>{'Wednesday, Mar 01'}</Text></Flex>
                      <Text>Dispatch Within: 24 Hours</Text>
                     
                     </Box>
                      
-                    <Box borderLeft='1px solid gray' pl='10px' w='22%'>
+                    <Box borderLeft='1px solid gray' pl='10px' w='25%' display={{base:'none',md:'block'}}>
                        <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.price}</Text></Flex>
                        <Flex gap='5px' alignItems='center' fontSize='15px'>
                         <Text>MRP</Text> 
                         <Flex alignItems='center'><BiRupee/><Text as='del'>{Math.floor(ele.price+((ele.price*ele.discount)/100))}</Text></Flex>
-                        <Text color='red'>{ele.discount} % OFF </Text>
+                        <Text fontSize='13px' color='red'>{ele.discount} % OFF </Text>
                        </Flex>
-                       <Text fontSize='15px'>MRP Includes all taxes</Text>
+                       <Text mb='10px' fontSize='15px'>MRP Includes all taxes</Text>
 
                        <Flex gap='3px'>
                         <Button size='sm'>+</Button>
                         <Button size='sm'>Qty : {ele.quantity}</Button>
                         <Button size='sm'>-</Button>
-                       </Flex>
-                       
+                       </Flex>  
                     </Box>
 
                 </Flex>
@@ -88,12 +105,12 @@ const handelDelete = (e) => {
 
             <Box>
                 
-                <Flex gap='20px'>
-                   <Button size='md' w='50%' colorScheme='orange'>
+                <Flex gap='20px' flexDirection={{base:'column',md:'row'}}>
+                   <Button size='md' w={{base:'80%',md:'50%'}} colorScheme='orange'>
                     {localStorage.getItem('token') ? "ADD TO CART" : "LOGIN TO PLACE ORDER"}
                    </Button>
 
-                    <Button size='md' w='30%' bg='gray' alignItems='center' >
+                    <Button size='md' w={{base:'80%',md:'30%'}} bg='gray' alignItems='center' >
                       <Flex justifyContent='space-between' gap='25px'>
                        <Box >
                          <Text fontSize='10px'>Total</Text>
@@ -110,9 +127,10 @@ const handelDelete = (e) => {
 
           </Box>
 
-           <Box w='30%' bg='red'  p='15px'>
+           <Box w={{base:'100%',md:'30%'}} mt={{base:'20px',md:'0px'}}>
+
             <Box>
-            <Flex gap='10px' alignItems='center' bg='pink'>
+            <Flex gap='10px' alignItems='center' bg='pink' boxShadow='md' rounded='sm'>
               <Image h='100px' src='https://cdn.fcglcdn.com/brainbees/checkout/gift-wrap.png' alt='gift' />
               <Box w='70%'>
                 <Text as='b'>Buying For Loved one?</Text>
@@ -121,6 +139,8 @@ const handelDelete = (e) => {
               <Radio isInvalid></Radio>
               </Flex>
             </Box>
+            
+             <Box p='10px' mt='20px' boxShadow='md' rounded='sm' bg='white'>
              <Text as='b' fontSize='lg'>Payment Information</Text>
              <Flex mt='8px' gap='30px' justifyContent='space-between'>
                 <Text>Value of Product(s)</Text>
@@ -138,27 +158,30 @@ const handelDelete = (e) => {
                 <Text>Shipping(+)</Text>
                 <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
              </Flex>
-             <Divider/>
+             <Divider border='1px solid gray'/>
              <Flex mt='5px' mb='5px' gap='30px' as='b' justifyContent='space-between'>
                 <Text >Sub Total</Text>
                 <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
              </Flex>
-             <Divider/>
+             <Divider border='1px solid gray'/>
              <Flex mt='5px' mb='5px' gap='30px'as='b' justifyContent='space-between'>
                 <Text >Final Payment</Text>
                 <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
              </Flex>
+             </Box>
+
            </Box>
+
          </Flex>
 
-         <Flex justifyContent='space-between' w='85%' m='auto' mt='30px'>
-            <Flex justifyContent='space-around'p='5px' w='63%' alignItems='center' gap='10px' fontSize='12px' bg='white' boxShadow='xs' rounded='md'>
+         <Flex justifyContent='space-between' w='82%' m='auto' mt='30px' display={{base:'none',md:'flex'}}>
+            <Flex justifyContent='space-around'p='5px' w='65%' alignItems='center' gap='10px' fontSize='12px' bg='white' boxShadow='xs' rounded='md'>
                 <Text as='b' fontSize='15px'>SHOP WITH CONFIDENCE</Text>
                 <Flex alignItems='center' ><AiFillSafetyCertificate size='50px' color="#bbd139"/><Text>Hassle Free Returns</Text></Flex>
                 <Flex alignItems='center' ><GiCardPickup size='50px' color="#bbd139"/><Text>Hand Picked Products</Text></Flex>
                 <Flex alignItems='center' ><MdRecycling size='50px' color="#bbd139"/><Text>Shop safe & secure</Text></Flex>
             </Flex>
-            <Box w='30%' bg='red'></Box>
+            <Box w='30%'></Box>
             </Flex>
 
        </Box>
