@@ -1,9 +1,10 @@
-import React from 'react'
+import AdminRoutes from "./AdminRoutes";
 
-const AdminContent = () => {
+function AdminContent() {
   return (
-    <div>AdminContent</div>
-  )
+    <div className="PageContent">
+      <AdminRoutes />
+    </div>
+  );
 }
-
-export default AdminContent
+export default AdminContent;
