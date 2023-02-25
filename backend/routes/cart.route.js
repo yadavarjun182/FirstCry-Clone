@@ -49,13 +49,15 @@ cartRouter.patch('/cartupdate/:id',async(req,res)=>{
 
 
 cartRouter.delete('/cartdelete/:id',async(req,res)=>{
+   
     try{
         let id = req.params.id
         await CartModel.findByIdAndDelete({_id:id})
         res.send(`product with id ${id} removed from Cart`)
     }
     catch(err){
-        res.send({'err':err})
+        console.log(err.message)
+        res.send({'err':err.message})
     }
 })
 
