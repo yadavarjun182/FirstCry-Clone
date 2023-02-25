@@ -8,7 +8,7 @@ import { Register } from './pages/Authantication/signup';
 import { Login } from './pages/Authantication/Login'
 import ProductsPage from "./pages/ProductsA/ProductsPage";
 import AdminLogin from "../src/Components/Admin/AdminLogin"
-import AdminDashboard from "./Components/Admin/Admin Dashboard"
+import AdminDashboard from "./Components/Admin/AdminDashboard"
 function App() {
 
 
