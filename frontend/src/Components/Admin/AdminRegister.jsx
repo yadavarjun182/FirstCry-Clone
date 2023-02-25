@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { toast } from 'react-toastify';
   
 export default function AdminRegister() {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,20 +17,55 @@ export default function AdminRegister() {
     
     const navigate = useNavigate();
 
+    const IsValidate = () => {
+      let isProceed = true;
+      let errormessage = 'Please enter all the required feilds';
+      if(username === null || username === '') {
+        isProceed = false;
+        toast.warning(errormessage);
+      } else if(firstname === null || firstname === '') {
+        isProceed = false;
+        toast.warning(errormessage);
+      } else if(email === null || email === '') {
+        isProceed = false;
+        toast.warning(errormessage);
+      }else if(mobile === null || mobile === '') {
+        isProceed = false;
+        toast.warning(errormessage);
+      }else if(password === null || password === '') {
+        isProceed = false;
+        toast.warning(errormessage);
+      } else if(!isProceed) {
+        toast.warning(errormessage);
+      } else {
+        if(/^[a-zA-Z0-0]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
+  
+        } else{
+            isProceed = false;
+            toast.warning("Please enter the valid email");
+        }
+      }
+      return isProceed;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const adminData = { firstname, lastname, username, mobile, email, password };
-        console.log(adminData);
-        fetch("http://localhost:7300/admin/register",{
-      method:"POST",
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify(adminData)
-      }).then((res) => {
-        navigate("/adminlogin");
-        console.log("Admin account created successfully!")
-    }).catch((err) => {
-        console.log("Error")
-    });
+
+        if(IsValidate()){
+          fetch("http://localhost:7300/admin/register",{
+            method:"POST",
+            headers:{'content-type':'application/json'},
+            body:JSON.stringify(adminData)
+          }).then((res) => {
+              navigate("/adminlogin");
+              toast.success("Admin account created successfully!")
+              console.log("admin created")
+          }).catch((err) => {
+            toast.error("Failed : Something is Wrong")
+            console.log("Error")
+          });
+        }  
     };
 
     return (
@@ -109,7 +145,7 @@ export default function AdminRegister() {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'} href="/adminlogin">Login</Link>
+                  Already a user? <Link color={'blue.400'} to="/adminlogin">Login</Link>
                 </Text>
               </Stack>
             </Stack>

@@ -7,7 +7,7 @@ const adminRouter = express.Router();
 
 adminRouter.post('/register', async (req, res) => {
   const { firstname, lastname, username, mobile, email, password } = req.body;
-
+  
   try {
     // Check if admin already exists
     const existingAdmin = await Admin.findOne({ username });
@@ -36,7 +36,7 @@ adminRouter.post('/login', async (req, res) => {
   try {
     // Check if admin exists
     const admin = await Admin.findOne({ username });
-    console.log(admin)
+    // console.log(admin)
     if (!admin) {
       return res.status(401).json({ message: 'Invalid credentials admin' });
     }
@@ -48,7 +48,8 @@ adminRouter.post('/login', async (req, res) => {
     }
 
     // Set session or token
-    let token = jwt.sign({ adminId:admin._id }, 'firstcry');
+    let token = jwt.sign({ adminId:admin._id }, 'firstcry'); 
+    res.cookie("token", token, { httpOnly: true, secure: true })
     res.status(200).json({ message: 'Logged in successfully', "token" : token});
   } catch (error) {
     console.error(error);

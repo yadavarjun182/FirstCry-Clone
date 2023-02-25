@@ -32,19 +32,10 @@ export const Cart = () => {
 
    const [pro,setPro] = useState([])
 
+
    const handelDelete = (id) => {
-      fetch('http://localhost:7300/cart/cartdelete/'+ id,{
-          method:'DELETE',
-          headers:{
-              "authorization":localStorage.getItem('token') //***To varify token*** */
-          }
-      })
-      .then(res => res.text()) 
-      .then(res =>{
-          console.log(res)
-          alert(res)
-      })
-  }
+         console.log(id)
+   }
 
 const GetCart = async() => {
       fetch('http://localhost:7300/cart/',{
@@ -66,14 +57,16 @@ useEffect(()=>{
 },[])
 
 
+
    if(pro.length=== 0){
       return(
-         <Box p='20px' w='80%' m='auto' textAlign='center'>
+         <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
             <Image m='auto' src='https://bakestudio.in/assets/images/cart/empty-cart.gif' alt='cart_is_empty' />
             <Text fontSize='30px'>Hey! No items in your cart</Text>
          </Box>
       )
    }
+
 
     return(
        <Box bg='#f3f3f3' pb='30px' pt='40px'>
@@ -85,18 +78,18 @@ useEffect(()=>{
                 <Flex gap='20px' p='10px' flexDirection={{base:'column',md:'row'}}  borderBottom='1px solid gray' borderTop='1px solid gray' >
 
                     <Box w={{base:'90%',md:'18%'}} p='10px'>
-                     <Image m='auto' w='100%' src={ele.img} alt={ele.name} />
+                     <Image m='auto' w='100%' src={ele.thumbnail} alt={ele.title} />
                     </Box>
 
                     <Box w={{base:'100%',md:'60%'}}>
-                     <Text as='b'>{ele.name}</Text>
+                     <Text as='b'>{ele.title}</Text>
                      <Flex alignItems='center' gap='5px'><CiDeliveryTruck/> <Text>Get it by</Text>   <Text>{'Wednesday, Mar 01'}</Text></Flex>
                      <Text>Dispatch Within: 24 Hours</Text>
                     
                     </Box>
                      
                     <Box borderLeft='1px solid gray' pl='10px' w='25%' display={{base:'none',md:'block'}}>
-                       <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.price}</Text></Flex>
+                       <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.mrp}</Text></Flex>
                        <Flex gap='5px' alignItems='center' fontSize='15px'>
                         <Text>MRP</Text> 
                         <Flex alignItems='center'><BiRupee/><Text as='del'>{Math.floor(ele.price+((ele.price*ele.discount)/100))}</Text></Flex>
@@ -114,7 +107,7 @@ useEffect(()=>{
                 </Flex>
 
             <Flex gap='5px'>
-            <Button onClick={()=>handelDelete(ele._id)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
+            <Button onClick={()=>handelDelete(ele)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
             <Button leftIcon={<FiHeart/>} bg='transparent' variant='solid'>MOVE TO SHORTLIST</Button>
             </Flex>
 
@@ -123,9 +116,10 @@ useEffect(()=>{
             ))}
 
             <Box>
+                
                 <Flex gap='20px' flexDirection={{base:'column',md:'row'}}>
                    <Button size='md' w={{base:'80%',md:'50%'}} colorScheme='orange'>
-                    {localStorage.getItem('token') ? "READY FOR PAYMENT" : "LOGIN TO PLACE ORDER"}
+                    {localStorage.getItem('token') ? "ADD TO CART" : "LOGIN TO PLACE ORDER"}
                    </Button>
 
                     <Button size='md' w={{base:'80%',md:'30%'}} bg='gray' alignItems='center' >

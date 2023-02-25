@@ -1,9 +1,6 @@
 .container {
   background-color: #f4f4f4;
-  box-sizing: border-box;
-  /* height: 3000px; */
-  padding-left: 110px;
-  padding-right: 110px;
+  padding: 0 5%;
 }
 .smallcontainer {
   background-color: white;
@@ -14,26 +11,23 @@
   display: flex;
 }
 .imgdiv img {
-  height: 570px;
-  width: 650px;
+  width: 50%;
 }
 .agediv {
   display: flex;
-  gap: 27px;
+  /* gap: 27px; */
   justify-content: center;
   align-items: center;
 }
-.agediv img {
-  height: 110px;
-  width: 160px;
-  font-weight: bold;
+.agediv > img {
+  width: calc(100% / 7);
 }
 .cardiv {
+  justify-content: center;
   display: flex;
 }
 .cardiv img {
-  height: 350px;
-  width: 300px;
+  width: calc(100% / 5);
 }
 
 .girldiv {
@@ -81,41 +75,7 @@
 
 @media only screen and (max-width: 600px) {
   .container {
-    background-color: #f4f4f4;
-    box-sizing: border-box;
-    /* height: 3000px; */
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .smallcontainer {
-    background-color: white;
-    /* padding: 10px; */
-  }
-
-  .imgdiv {
-    display: flex;
-  }
-  .imgdiv img {
-    height: 210px;
-    width: 165px;
-  }
-  .agediv {
-    display: flex;
-    gap: 2px;
-    justify-content: center;
-    align-items: center;
-  }
-  .agediv img {
-    height: 55px;
-    width: 50px;
-    font-weight: bold;
-  }
-  .cardiv {
-    display: flex;
-  }
-  .cardiv img {
-    height: 120px;
-    width: 68px;
+    padding: 0 2%;
   }
 
   .girldiv {

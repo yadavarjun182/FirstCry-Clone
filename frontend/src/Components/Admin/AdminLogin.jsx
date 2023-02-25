@@ -1,6 +1,8 @@
 import { Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Link, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 export default function AdminLogin() {
 
@@ -9,23 +11,39 @@ export default function AdminLogin() {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
+  useEffect(() => {
+    sessionStorage.clear();
+  })
 
-  // })
+  const validate = () => {
+    let result = true;
+    if(username === "" || username === null) {
+      result = false;
+      toast.warning("Please Enter id");
+    }
+    if(password === "" || password === null) {
+      result = false;
+      toast.warning("Please Enter Password");
+    }
+    return result;
+  }
   const handleLogin = (e) => {
     e.preventDefault();
         const adminData = { username, password };
         console.log(adminData);
+      if(validate()){
         fetch("http://localhost:7300/admin/login",{
           method:"POST",
           headers:{'content-type':'application/json'},
           body:JSON.stringify(adminData)
-      }).then((res) => {
-        navigate("/adminDashboard");
-        console.log("Admin login successfully!")
-    }).catch((err) => {
-        console.log("Error")
-    });
+        }).then((res) => {
+          // Cookies.set('token', res.data.token)
+          navigate("/adminDashboard");
+          toast.success("Admin login successfully!")
+        }).catch((err) => {
+          toast.error("Something went wrong")
+      });
+    }     
   };
 
     return (
