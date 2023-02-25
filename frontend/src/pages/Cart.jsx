@@ -33,18 +33,8 @@ export const Cart = () => {
    const [pro,setPro] = useState([])
 
    const handelDelete = (id) => {
-      fetch('http://localhost:7300/cart/cartdelete/'+ id,{
-          method:'DELETE',
-          headers:{
-              "authorization":localStorage.getItem('token') //***To varify token*** */
-          }
-      })
-      .then(res => res.text()) 
-      .then(res =>{
-          console.log(res)
-          alert(res)
-      })
-  }
+         console.log(id)
+   }
 
 const GetCart = async() => {
       fetch('http://localhost:7300/cart/',{
@@ -65,15 +55,6 @@ useEffect(()=>{
   GetCart()
 },[])
 
-
-   if(pro.length=== 0){
-      return(
-         <Box p='20px' w='80%' m='auto' textAlign='center'>
-            <Image m='auto' src='https://bakestudio.in/assets/images/cart/empty-cart.gif' alt='cart_is_empty' />
-            <Text fontSize='30px'>Hey! No items in your cart</Text>
-         </Box>
-      )
-   }
 
     return(
        <Box bg='#f3f3f3' pb='30px' pt='40px'>
@@ -114,7 +95,7 @@ useEffect(()=>{
                 </Flex>
 
             <Flex gap='5px'>
-            <Button onClick={()=>handelDelete(ele._id)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
+            <Button onClick={()=>handelDelete(ele)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
             <Button leftIcon={<FiHeart/>} bg='transparent' variant='solid'>MOVE TO SHORTLIST</Button>
             </Flex>
 
@@ -123,9 +104,10 @@ useEffect(()=>{
             ))}
 
             <Box>
+                
                 <Flex gap='20px' flexDirection={{base:'column',md:'row'}}>
                    <Button size='md' w={{base:'80%',md:'50%'}} colorScheme='orange'>
-                    {localStorage.getItem('token') ? "READY FOR PAYMENT" : "LOGIN TO PLACE ORDER"}
+                    {localStorage.getItem('token') ? "ADD TO CART" : "LOGIN TO PLACE ORDER"}
                    </Button>
 
                     <Button size='md' w={{base:'80%',md:'30%'}} bg='gray' alignItems='center' >

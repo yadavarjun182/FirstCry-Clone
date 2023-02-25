@@ -176,12 +176,10 @@ const FooterPage = () => {
           </div>
         </div>
 
-        {/* botom */}
         <hr className={style.hr} />
 
         <div className={style.botomF}>
           <div className={style.toptext}>
-            {/* first  */}
             <p>
               FirstCry Baby & Kids Products Online Store
               <br />
@@ -198,7 +196,6 @@ const FooterPage = () => {
               as well.
             </p>
 
-            {/* second */}
             <p>
               With 2 Lakh Baby & Kids Products, 2 Million Happy Customers, and 2
               Thousand+ top-notch national and international brands like
