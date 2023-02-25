@@ -4,7 +4,6 @@ import {
   HStack,
   IconButton,
   useDisclosure,
-  Text,
   Stack,
   ListItem,
   UnorderedList,Image,Input,InputGroup,InputRightAddon

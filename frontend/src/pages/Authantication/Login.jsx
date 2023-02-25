@@ -1,8 +1,7 @@
 import React,{useState} from "react";
-import { Box,Image,Text,Input,FormLabel,Divider} from '@chakra-ui/react';
+import { Box,Text,Input,FormLabel,Divider} from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
-import logo from '../../images/logo_type1.jpg';
 
 let user = {
  email:'',
