@@ -20,11 +20,9 @@ function App() {
 
     <div>
   
-        <ProductsPage />
-        <FooterPage />
+        <AdminLogin />
       </div>
 
-    </div>
   );
 }
 
