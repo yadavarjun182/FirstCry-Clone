@@ -68,6 +68,7 @@ let threenhalf = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsSta
 
 const ProductsPage = () => {
 
+
   // const [ProdArr, setProdArr] = useState([])
 
   const ProdArr = [
@@ -569,7 +570,6 @@ const ProductsPage = () => {
   // useEffect(() => {
   //   getAllProducts()
   // }, [])
-
 
   return (
     <Box bg='#ffffff' mt='20px' mb='30px'>

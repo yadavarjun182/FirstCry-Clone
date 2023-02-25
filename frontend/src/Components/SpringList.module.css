@@ -1,6 +1,4 @@
 .masterDiv {
-  width: 100%;
-  margin: auto;
   background-color: #f4f4f4;
 }
 .mainDiv {
@@ -11,15 +9,35 @@
 }
 .mainDiv > img {
   width: 100%;
+  height: auto !important;
 }
 .imgCardDivs {
   display: flex;
   width: 85.5%;
   margin: auto;
 }
+.imgCardDivs > div {
+  /* width: calc(100% / 8); */
+  width: fit-content;
+}
+.imgCardDivs > div > img {
+  width: 100%;
+}
 .BelovedCardDivs {
   width: 85.5%;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(8, 1fr);
+}
+.BelovedCardDivs > div > img {
+  width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  .mainDiv {
+    width: 95%;
+  }
+  .imgCardDivs {
+    width: 95%;
+  }
 }
