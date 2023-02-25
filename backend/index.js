@@ -8,16 +8,16 @@ const { cartRouter } = require("./routes/cart.route.js")
 const { productRouter } = require("./routes/product.route.js")
 
 
+
 const app = express()
 app.use(cors({ origin: "*" }))
 app.use(express.json())
 
 
+
 app.use("/users", userRouter)
 app.use("/admin", adminRouter)
 app.use("/products", productRouter)
-
-
 
 
 app.use((req, res, next) => {
@@ -35,9 +35,6 @@ app.use((err, req, res, next) => {
 
 
 app.use("/products", productRouter)
-
-
-
 
 
 //************* */ cart****************//
