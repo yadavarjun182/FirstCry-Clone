@@ -55,6 +55,7 @@ let threenhalf= [<BsStarFill  size='13px'/>,<BsStarFill size='13px'/>,<BsStarFil
 const ProductsPage = () => {
 
   
+
   return (
      <Box bg='#ffffff' mt='20px' mb='30px'>
        <Flex w='95%' m='auto' gap='20px' flexDirection={{base:'column',md:'row'}}>

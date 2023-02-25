@@ -32,6 +32,7 @@ export const Cart = () => {
 
    const [pro,setPro] = useState([])
 
+
    const handelDelete = (id) => {
       fetch('http://localhost:7300/cart/cartdelete/'+ id,{
           method:'DELETE',
@@ -68,7 +69,7 @@ useEffect(()=>{
 
    if(pro.length=== 0){
       return(
-         <Box p='20px' w='80%' m='auto' textAlign='center'>
+         <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
             <Image m='auto' src='https://bakestudio.in/assets/images/cart/empty-cart.gif' alt='cart_is_empty' />
             <Text fontSize='30px'>Hey! No items in your cart</Text>
          </Box>
@@ -85,18 +86,18 @@ useEffect(()=>{
                 <Flex gap='20px' p='10px' flexDirection={{base:'column',md:'row'}}  borderBottom='1px solid gray' borderTop='1px solid gray' >
 
                     <Box w={{base:'90%',md:'18%'}} p='10px'>
-                     <Image m='auto' w='100%' src={ele.img} alt={ele.name} />
+                     <Image m='auto' w='100%' src={ele.thumbnail} alt={ele.title} />
                     </Box>
 
                     <Box w={{base:'100%',md:'60%'}}>
-                     <Text as='b'>{ele.name}</Text>
+                     <Text as='b'>{ele.title}</Text>
                      <Flex alignItems='center' gap='5px'><CiDeliveryTruck/> <Text>Get it by</Text>   <Text>{'Wednesday, Mar 01'}</Text></Flex>
                      <Text>Dispatch Within: 24 Hours</Text>
                     
                     </Box>
                      
                     <Box borderLeft='1px solid gray' pl='10px' w='25%' display={{base:'none',md:'block'}}>
-                       <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.price}</Text></Flex>
+                       <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.mrp}</Text></Flex>
                        <Flex gap='5px' alignItems='center' fontSize='15px'>
                         <Text>MRP</Text> 
                         <Flex alignItems='center'><BiRupee/><Text as='del'>{Math.floor(ele.price+((ele.price*ele.discount)/100))}</Text></Flex>

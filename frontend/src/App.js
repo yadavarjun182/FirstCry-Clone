@@ -10,14 +10,16 @@ import { Cart } from './pages/Cart';
 import {Register} from './pages/Authantication/signup';
 import {Login} from './pages/Authantication/Login'
 import ProductsPage from "./pages/ProductsA/ProductsPage";
+import {Productform} from './pages/ProductsA/product.Admin'
 
 function App() {
 
 
   return (
- <div>
-        <ProductsPage />
-        <FooterPage />
+      <div>
+      <Register/>
+      <Login/>
+      <Cart/>
       </div>
   );
 }

@@ -15,7 +15,7 @@ app.use(express.json())
 
 app.use("/users", userRouter)
 app.use("/admin", adminRouter)
-//app.use("./adminhandle", ProductRouter)
+app.use("/products", productRouter)
 
 
 
