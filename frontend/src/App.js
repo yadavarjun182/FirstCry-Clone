@@ -17,8 +17,8 @@ function App() {
 
     <div>
       {/* <AdminLogin /> */}
-      <AdminDashboard/>
-      {/* <ProductsPage /> */}
+      {/* <AdminDashboard/> */}
+      <ProductsPage />
       {/* <FooterPage /> */}
     </div>
 
