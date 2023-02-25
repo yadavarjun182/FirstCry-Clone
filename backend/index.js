@@ -13,11 +13,13 @@ const app = express()
 app.use(cors({ origin: "*" }))
 app.use(express.json())
 
-
+<<<<<<<<< Temporary merge branch 1
 
 app.use("/users", userRouter)
 app.use("/admin", adminRouter)
 //app.use("./adminhandle", ProductRouter)
+
+
 
 
 app.use((req, res, next) => {
