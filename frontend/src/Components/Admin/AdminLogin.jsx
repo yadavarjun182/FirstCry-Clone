@@ -1,6 +1,33 @@
 import { Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Link, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
-  
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 export default function AdminLogin() {
+
+  const [username, setUsername ] = useState("");
+  const [password, setPassword ] = useState("");
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+
+  // })
+  const handleLogin = (e) => {
+    e.preventDefault();
+        const adminData = { username, password };
+        console.log(adminData);
+        fetch("http://localhost:7300/admin/login",{
+          method:"POST",
+          headers:{'content-type':'application/json'},
+          body:JSON.stringify(adminData)
+      }).then((res) => {
+        navigate("/adminDashboard");
+        console.log("Admin login successfully!")
+    }).catch((err) => {
+        console.log("Error")
+    });
+  };
+
     return (
       <Flex
         minH={'100vh'}
@@ -9,10 +36,7 @@ export default function AdminLogin() {
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-            </Text>
+            <Heading fontSize={'4xl'}>Admin Login</Heading>
           </Stack>
           <Box
             rounded={'lg'}
@@ -21,12 +45,12 @@ export default function AdminLogin() {
             p={8}>
             <Stack spacing={4}>
               <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <FormLabel>Username</FormLabel>
+                <Input type="username" value={username} onChange={e => setUsername(e.target.value)} />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -37,6 +61,7 @@ export default function AdminLogin() {
                   <Link color={'blue.400'}>Forgot password?</Link>
                 </Stack>
                 <Button
+                  onClick={handleLogin}
                   bg={'blue.400'}
                   color={'white'}
                   _hover={{

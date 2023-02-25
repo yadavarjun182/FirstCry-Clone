@@ -10,19 +10,17 @@ import { Cart } from './pages/Cart';
 import {Register} from './pages/Authantication/signup';
 import {Login} from './pages/Authantication/Login'
 import ProductsPage from "./pages/ProductsA/ProductsPage";
+import AdminRegister from "./Components/Admin/AdminRegister";
+import AdminLogin from "./Components/Admin/AdminLogin";
 
 function App() {
 
 
   return (
 
-    <div>
-  
-        <ProductsPage />
-        <FooterPage />
-      </div>
-
-    </div>
+    <>
+      <AdminLogin />
+    </>
   );
 }
 

@@ -4,3 +4,4 @@ const connection = mongoose.connect("mongodb+srv://manish-nishad:manish-nishad@c
 
 
 module.exports = { connection }
+
