@@ -4,7 +4,7 @@ import {
   HStack,
   IconButton,
   useDisclosure,
-  useColorModeValue,
+  Text,
   Stack,
   ListItem,
   UnorderedList,Image,Input,InputGroup,InputRightAddon
@@ -14,27 +14,22 @@ import {GoLocation} from 'react-icons/go';
 import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
 import {Link} from "react-router-dom";
 import Navbar2 from "./Navbar2";
-import {useState} from "react";
-const Links = ["Dashboard", "Projects", "Team"];
+import NavLink from "./NavLink";
+//import {useState} from "react";
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+const Links = [
+    {name: "BOYS FASHION",id: "/"},
+    { name: "GIRLS FASHION", id: "/" },
+    { name: "FOOTWEAR", id: "/" },
+    { name: "LOGIN", id: "/login" },
+    
+   
+];
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-const [login,logout]=useState(false)
+//const [login,logout]=useState(false)
+ 
   return (
     <>
       <Box bg={'white'} px={4}  position='sticky' top={0} zIndex={9999}  m={'auto'} >
@@ -76,15 +71,27 @@ const [login,logout]=useState(false)
               <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart fontSize={30}/> Cart</ListItem>
                           </Link>
             </UnorderedList>
-          </Flex>
+                  </Flex>
+                  <Link to={'/cart'} onClose>
+                  <AiOutlineShoppingCart fontSize={30}/>
+                  </Link>
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+
+                             {Links.map((link, i) => (
+                                <NavLink
+color="black"
+                                    key={i}
+                                    to={link.id}
+                                    name={link.name}
+                                    w="xm"
+                                    textalign="center"
+                                    onClick={() => onClose()}
+                                />
+                            ))}
             </Stack>
           </Box>
         ) : null}

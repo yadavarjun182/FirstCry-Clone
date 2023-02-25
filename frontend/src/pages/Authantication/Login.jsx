@@ -51,7 +51,7 @@ export const Login = () => {
     return(
 
       <Box w={{base:"90%",md:'25%'}} m='auto'>
-             <Image  w='250px'm='auto' src={logo} alt='first cry' />
+             {/*<Image  w='250px'm='auto' src={logo} alt='first cry' />*/}
             
              <Text fontSize='2xl' as='b'>Login</Text>
              <br /><br />
