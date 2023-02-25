@@ -8,8 +8,10 @@ import { Cart } from "./pages/Cart";
 import { Register } from "./pages/Authantication/signup";
 import { Login } from "./pages/Authantication/Login";
 import ProductsPage from "./pages/ProductsA/ProductsPage";
+
 import AdminRegister from "./Components/Admin/AdminRegister";
 import AdminLogin from "./Components/Admin/AdminLogin";
+
 
 import SideMenu from "./Components/Admin/Components/SideMenu/index";
 import PageContent from "./Components/Admin/Components/PageContent/index";
@@ -22,12 +24,11 @@ import { ToastContainer } from "react-toastify";
 function App() {
   return (
 
-    <>
-      <ToastContainer theme="colored" position="top-center"></ToastContainer>
-      <AllRouts />    
-    </>
-
-
+      <div>
+      <Register/>
+      <Login/>
+      <Cart/>
+      </div>
   );
 }
 

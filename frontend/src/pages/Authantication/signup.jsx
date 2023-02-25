@@ -63,7 +63,7 @@ export const Register = () => {
 
     return(
 
-      <Box w={{base:"90%",md:'25%'}} m='auto' p='20px'>
+      <Box w={{base:"90%",md:'25%'}} m='auto' p='20px' mt='20px' mb ='30px'>
              <Image  w='250px'm='auto' src={logo} alt='first cry' />
              <br />
              <Text fontSize='2xl' as='b'>Register</Text>
