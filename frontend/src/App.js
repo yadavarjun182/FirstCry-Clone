@@ -10,14 +10,14 @@ function App() {
 
   
   return (
-
-      <div>
-      <Navbar/>
-       <Register/>
-       <Login/> 
-       <Cart/>
-      <FooterPage />
-    </div>
+     <div>
+     {/* <Register/>
+     <Login/>
+     <Cart/> */}
+     <Navbar/>
+     <ProductsPage/>
+     <FooterPage/>
+     </div>
   );
 }
 
