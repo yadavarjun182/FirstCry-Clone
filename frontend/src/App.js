@@ -7,22 +7,24 @@ import './App.css';
 import FooterPage from "./pages/FooterPage";
 
 import { Cart } from './pages/Cart';
-import {Register} from './pages/Authantication/signup';
-import {Login} from './pages/Authantication/Login'
+import { Register } from './pages/Authantication/signup';
+import { Login } from './pages/Authantication/Login'
 import ProductsPage from "./pages/ProductsA/ProductsPage";
-
+import AdminLogin from "../src/Components/Admin/AdminLogin"
+import AdminDashboard from "./Components/Admin/Admin Dashboard"
 function App() {
 
 
   return (
 
     <div>
-  
-        <ProductsPage />
-        <FooterPage />
-      </div>
-
+      {/* <AdminLogin /> */}
+      <AdminDashboard/>
+      {/* <ProductsPage /> */}
+      {/* <FooterPage /> */}
     </div>
+
+    </div >
   );
 }
 
