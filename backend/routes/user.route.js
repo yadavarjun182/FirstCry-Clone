@@ -13,25 +13,25 @@ userRouter.get("/", (req, res) => {
 
 
 userRouter.post("/register",async(req,res) =>  {
-          console.log(req.body)
+         // console.log(req.body)
     try{
         const {name,contact,email,password} = req.body;
 
          let userCheck = await UserModel.find({email})
 
          if(userCheck.length > 0){
-            res.send('User is already exist, go for Login')
+            res.send({'msg':'user allready exist !'})
          }else{
             bcrypt.hash(password, 3, async(err, hash) => {
                 if(err){
-                 res.send({'unable to register, err':err})
+                 res.send({'err':'Unable to register !'})
                 }
                 else if(name && contact && email && password ){
                  let User = new UserModel({name,contact,email,password:hash})
                  await User.save()
-                 res.send('User Register Sucess')
+                 res.send({'msg':'user register sucess !!!'})
                 }else{
-                 res.send('User need all information')
+                 res.send({'err':'Fill all information in correct way !'})
                 }
              });
          }
@@ -46,16 +46,20 @@ userRouter.post("/register",async(req,res) =>  {
 userRouter.post('/login',async(req,res)=>{
      try{
         let {email,password} = req.body
+
        let user = await UserModel.find({email})
-       //console.log(user)
-        if(user.length > 0 ){
+       if(email ==='' || password === ''){
+        res.send({'err':'Fill Correct Information !'})
+       }
+       else if(user.length > 0 ){
               bcrypt.compare(password, user[0].password, (err, result)=> {
               if(result){
               let token = jwt.sign({ userId:user[0]._id }, 'firstcry');
-              res.send({'msg':'user login !',"token":token})
+              res.send({'msg':'User Login Sucess!',"token":token})
               }
               else{
-                res.send({'msg':'wrong password','err':err})
+                console.log('wrong pw')
+                res.send({'err':'wrong password'})
               }
          })
         }else{
