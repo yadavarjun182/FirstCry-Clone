@@ -1,5 +1,10 @@
+
+
+
+
+// import Home from "./pages/home";
 import './App.css';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import FooterPage from "./pages/FooterPage";
 import { Cart } from './pages/Cart';
 import {Register} from './pages/Authantication/signup';
@@ -8,16 +13,12 @@ import ProductsPage from "./pages/ProductsA/ProductsPage";
 
 function App() {
 
-  
+
   return (
-     <div>
-     {/* <Register/>
-     <Login/>
-     <Cart/> */}
-     <Navbar/>
-     <ProductsPage/>
-     <FooterPage/>
-     </div>
+ <div>
+        <ProductsPage />
+        <FooterPage />
+      </div>
   );
 }
 

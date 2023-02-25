@@ -1,0 +1,31 @@
+
+
+[
+    {
+      "title": "Barbie Fashion Doll With Accessories 4",
+      "description": "3 to 10 Years, 32.5 x 25.5 x 6 cm, Endless fun for little girl and her friends",
+      "mrp": 1000,
+      "discount": 10,
+      "brand": "hot wheels",
+      "category": "toys",
+      "gender": "uni",
+      "quantity": "5",
+      "rating": 4.5,
+      "thumbnail": "https://cdn.fcglcdn.com/brainbees/images/products/56x69/2556927a.webp",
+      "images": [],
+      "specification": "quality product non toxic"
+    },{
+        "title": "Barbie Fashion Doll With Accessories 4",
+        "description": "3 to 10 Years, 32.5 x 25.5 x 6 cm, Endless fun for little girl and her friends",
+        "mrp": 1000,
+        "discount": 10,
+        "brand": "hot wheels",
+        "category": "toys",
+        "gender": "uni",
+        "quantity": "5",
+        "rating": 4.5,
+        "thumbnail": "https://cdn.fcglcdn.com/brainbees/images/products/56x69/2556927a.webp",
+        "images": [],
+        "specification": "quality product non toxic"
+      }
+  ]
