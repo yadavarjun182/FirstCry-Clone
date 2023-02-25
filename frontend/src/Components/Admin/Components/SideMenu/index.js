@@ -36,17 +36,17 @@ function SideMenu() {
           },
           {
             label: "Inventory",
-            key: "/inventory",
+            key: "/adminInventory",
             icon: <ShopOutlined />,
           },
           {
             label: "Orders",
-            key: "/orders",
+            key: "/adminOrders",
             icon: <ShoppingCartOutlined />,
           },
           {
             label: "Customers",
-            key: "/customers",
+            key: "/adminCustomers",
             icon: <UserOutlined />,
           },
         ]}
