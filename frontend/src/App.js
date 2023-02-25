@@ -1,3 +1,4 @@
+
 // import Home from "./pages/home";
 import "./App.css";
 // import Navbar from './components/Navbar';
@@ -8,14 +9,28 @@ import { Login } from "./pages/Authantication/Login";
 import ProductsPage from "./pages/ProductsA/ProductsPage";
 import AdminRegister from "./Components/Admin/AdminRegister";
 import AdminLogin from "./Components/Admin/AdminLogin";
+
 import Home from "./pages/Home";
+
+import SideMenu from "./Components/Admin/Components/SideMenu/index";
+import PageContent from "./Components/Admin/Components/PageContent/index";
+import AppHeader from './Components/Admin/Components/AppHeader';
+import AdminDashboard from './Components/Admin/AdminDashboard';
+
 
 function App() {
   return (
+
     <>
-      {/* <AdminLogin /> */}
-      <Home />
+ 
+
+
+    <div className='App'>
+      
+      <AdminDashboard />    
     </>
+
+
   );
 }
 
