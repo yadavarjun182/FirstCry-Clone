@@ -13,12 +13,11 @@ const app = express()
 app.use(cors({ origin: "*" }))
 app.use(express.json())
 
-app.use("/users", userRouter);
-app.use("/admin", adminRouter);
-// app.use("./adminhandle", ProductRouter)
 
-//************* */ cart****************//
-// app.use(cartAuthanticate)
+
+app.use("/users", userRouter)
+app.use("/admin", adminRouter)
+//app.use("./adminhandle", ProductRouter)
 
 
 app.use((req, res, next) => {
@@ -36,9 +35,6 @@ app.use((err, req, res, next) => {
 
 
 app.use("/products", productRouter)
-
-
-
 
 
 //************* */ cart****************//
