@@ -4,12 +4,13 @@ const { ProductModel } = require("../model/product.model");
 
 
 productRouter.get('/get', async (req, res) => {
+    // let { rating } = req.query
+
     const query = req.query
     try {
         let data = await ProductModel.find(query)
         console.log('Data count:', data.length)
         res.status(200).send(data)
-
     } catch (err) {
         console.log("arjun")
         console.log({ "err": err.message })
