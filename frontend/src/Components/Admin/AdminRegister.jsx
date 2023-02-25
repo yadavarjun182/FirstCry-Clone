@@ -1,42 +1,37 @@
-import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text, useColorModeValue, Link } from '@chakra-ui/react';
+import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { useState } from 'react';
-import axios from "axios";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   
 export default function AdminRegister() {
     const [showPassword, setShowPassword] = useState(false);
-    const [data, setData] = useState({
-        firstName: "",
-        lastName: "",
-        mobileNumer: "",
-        email: "",
-        password: "",
-    });
+    const [firstname, setFirstname ] = useState("");
+    const [lastname, setLastname ] = useState("");
+    const [username, setUsername ] = useState("");
+    const [mobile, setMobile ] = useState("");
+    const [email, setEmail ] = useState("");
+    const [password, setPassword ] = useState("");
     const [error, setError] = useState("");
+    
     const navigate = useNavigate();
-
-    const handleChange = ({ currentTarget: input }) => {
-        setData({ ...data, [input.name]: input.value });
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const url = "http://localhost:7300/admin/adminregister";
-            const { data: res } = await axios.post(url, data);
-            navigate("/login");
-            console.log(res.message);
-        } catch(error) {
-            if(
-                error.response && 
-                error.response.status >= 400 && 
-                error.response.status <= 500
-                ){
-                setError(error.response.data.message);
-            }
-        }
+        const adminData = { firstname, lastname, username, mobile, email, password };
+        console.log(adminData);
+        fetch("http://localhost:7300/admin/register",{
+      method:"POST",
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify(adminData)
+      }).then((res) => {
+        navigate("/adminlogin");
+        console.log("Admin account created successfully!")
+    }).catch((err) => {
+        console.log("Error")
+    });
     };
+
     return (
       <Flex
         minH={'100vh'}
@@ -59,30 +54,34 @@ export default function AdminRegister() {
             <Stack spacing={4}>
               <HStack>
                 <Box>
-                  <FormControl id="firstName" isRequired>
+                  <FormControl id="firstname" isRequired>
                     <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
+                    <Input type="text" value={firstname} onChange={e => setFirstname(e.target.value)} />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl id="lastName">
+                  <FormControl id="lastname">
                     <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
+                    <Input type="text" value={lastname} onChange={e => setLastname(e.target.value)} />
                   </FormControl>
                 </Box>
               </HStack>
+              <FormControl id="username" isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+              </FormControl>
               <FormControl id="mobile" isRequired>
                 <FormLabel>Mobile Number</FormLabel>
-                <Input type="number" />
+                <Input type="number" value={mobile} onChange={e => setMobile(e.target.value)} />
               </FormControl>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
+                  <Input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} />
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}
@@ -105,12 +104,12 @@ export default function AdminRegister() {
                   _hover={{
                     bg: 'blue.500',
                   }}>
-                  Sign up
+                  Register
                 </Button>
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'}>Login</Link>
+                  Already a user? <Link color={'blue.400'} href="/adminlogin">Login</Link>
                 </Text>
               </Stack>
             </Stack>
