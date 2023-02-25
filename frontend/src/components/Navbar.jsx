@@ -8,13 +8,20 @@ import {
   ListItem,
   UnorderedList,Image,Input,InputGroup,InputRightAddon
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+  } from '@chakra-ui/react'
+import {HamburgerIcon,CloseIcon} from "@chakra-ui/icons";
+import {ChevronDownIcon} from "@chakra-ui/icons"
 import {GoLocation} from 'react-icons/go';
 import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
 import {Link} from "react-router-dom";
 import Navbar2 from "./Navbar2";
 import NavLink from "./NavLink";
-//import {useState} from "react";
+import {useState} from "react";
 
 const Links = [
     {name: "BOYS FASHION",id: "/"},
@@ -27,11 +34,15 @@ const Links = [
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-//const [login,logout]=useState(false)
- 
+const [login,Setlogout]=useState(false)
+    const handlelogout=() =>
+    {
+     Setlogout(true)
+    }
+    
   return (
     <>
-      <Box bg={'white'} px={4}  position='sticky' top={0} zIndex={9999}  m={'auto'} >
+      <Box bg={'white'} px={4}  position='sticky' top={0} zIndex={999999999}  m={'auto'} >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"} w='95%' m='auto'>
           <IconButton
             size={"md"}
@@ -62,18 +73,27 @@ export default function Navbar() {
               <ListItem pt={1}>Support |</ListItem>
               <ListItem pt={1}>Track Order |</ListItem>
               <ListItem pt={1}>FirstCry Parenting |</ListItem>
-                          <Link to={'/login'}>
-                          <ListItem pt={1}>Login/Register |</ListItem>
-                          </Link>
+                          {login? <Link to={'/login'}>
+                              <ListItem pt={1}>Login/Register |</ListItem></Link>:<Box pt={1}><Menu>
+                                  <MenuButton rightIcon={<ChevronDownIcon />}>
+                                      My Account
+                                  </MenuButton>
+                                  <MenuList>
+                                      <MenuItem onClick={handlelogout}>Logout</MenuItem>
+                                  </MenuList>
+                              </Menu>  |</Box>
+                          }
                           <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart /> Shorlist |</ListItem>
                           <Link to={'/cart'}>
               <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart fontSize={30}/> Cart</ListItem>
                           </Link>
             </UnorderedList>
                   </Flex>
-                  <Link to={'/cart'} onClose>
+                  <Box display={{base:'flex',md:"none"}}>    
+                  <Link to={'/cart'} >
                   <AiOutlineShoppingCart fontSize={30}/>
                   </Link>
+                  </Box>
         </Flex>
 
         {isOpen ? (
