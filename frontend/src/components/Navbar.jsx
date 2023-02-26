@@ -2,41 +2,47 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   useDisclosure,
-  useColorModeValue,
   Stack,
   ListItem,
   UnorderedList,Image,Input,InputGroup,InputRightAddon
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+  } from '@chakra-ui/react'
+import {HamburgerIcon,CloseIcon} from "@chakra-ui/icons";
+import {ChevronDownIcon} from "@chakra-ui/icons"
 import {GoLocation} from 'react-icons/go';
 import {AiOutlineHeart,AiOutlineShoppingCart,AiOutlineSearch} from 'react-icons/ai';
+import {Link} from "react-router-dom";
 import Navbar2 from "./Navbar2";
-const Links = ["Dashboard", "Projects", "Team"];
+import NavLink from "./NavLink";
+import {useState} from "react";
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+const Links = [
+    {name: "BOYS FASHION",id: "/"},
+    { name: "GIRLS FASHION", id: "/" },
+    { name: "FOOTWEAR", id: "/" },
+    { name: "LOGIN", id: "/login" },
+    
+   
+];
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+const [login,Setlogout]=useState(false)
+    const handlelogout=() =>
+    {
+     Setlogout(true)
+    }
+    
   return (
     <>
-      <Box bg={useColorModeValue("white.100", "white")} px={4} >
+      <Box bg={'white'} px={4}  position='sticky' top={0} zIndex={999999999}  m={'auto'} >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"} w='95%' m='auto'>
           <IconButton
             size={"md"}
@@ -46,7 +52,9 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={5} alignItems={"center"}>
-            <Image src='../logo.png' w='90px'/>
+                      <Link to={'/'}>
+                      <Image src='../logo.png' w='180px' pt={7}/>
+                      </Link>
             <HStack
               as={"nav"}
               spacing={4}
@@ -60,29 +68,54 @@ export default function Navbar() {
           </HStack>
           <Flex alignItems={"center"}>
             <UnorderedList display={{ base: "none", md: "flex" }} listStyleType="none" gap={2} fontSize={12}>
-              <ListItem display={'flex'} gap={1}><GoLocation/> Select location |</ListItem>
-              <ListItem>Stores & Preschools |</ListItem>
-              <ListItem>Support |</ListItem>
-              <ListItem>Track Order</ListItem>
-              <ListItem>FirstCry Parenting |</ListItem>
-              <ListItem>Login/Register |</ListItem>
-              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart/> Shorlist |</ListItem>
-              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart/> Cart</ListItem>
+              <ListItem display={'flex'} gap={1} pt={1}><GoLocation/> Select location |</ListItem>
+              <ListItem pt={1}>Stores & Preschools |</ListItem>
+              <ListItem pt={1}>Support |</ListItem>
+              <ListItem pt={1}>Track Order |</ListItem>
+              <ListItem pt={1}>FirstCry Parenting |</ListItem>
+                          {login? <Link to={'/login'}>
+                              <ListItem pt={1}>Login/Register |</ListItem></Link>:<Box pt={1}><Menu>
+                                  <MenuButton rightIcon={<ChevronDownIcon />}>
+                                      My Account
+                                  </MenuButton>
+                                  <MenuList>
+                                      <MenuItem onClick={handlelogout}>Logout</MenuItem>
+                                  </MenuList>
+                              </Menu>  |</Box>
+                          }
+                          <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineHeart /> Shorlist |</ListItem>
+                          <Link to={'/cart'}>
+              <ListItem display={'flex'} gap={1} alignItems='center'><AiOutlineShoppingCart fontSize={30}/> Cart</ListItem>
+                          </Link>
             </UnorderedList>
-          </Flex>
+                  </Flex>
+                  <Box display={{base:'flex',md:"none"}}>    
+                  <Link to={'/cart'} >
+                  <AiOutlineShoppingCart fontSize={30}/>
+                  </Link>
+                  </Box>
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+
+                             {Links.map((link, i) => (
+                                <NavLink
+color="black"
+                                    key={i}
+                                    to={link.id}
+                                    name={link.name}
+                                    w="xm"
+                                    textalign="center"
+                                    onClick={() => onClose()}
+                                />
+                            ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
 <Navbar2/>
-    </>
+      </>
   );
 }
