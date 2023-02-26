@@ -1,17 +1,26 @@
 import { Box, UnorderedList, Text } from "@chakra-ui/react";
-
 import React from "react";
+import { Link } from "react-router-dom"
+
 export default function Navbar2() {
   return (
     <>
-      <Box bg={"#ffd91c"} px={4} position={'sticky'} top='4rem'  zIndex={9999}>
+      <Box bg={"#ffd91c"} px={4} position={'sticky'} top='4rem' zIndex={9999}>
         <Box w={"95%"} m="auto">
           <UnorderedList display={{ base: "none", md: "flex" }} h={16} alignItems={"center"} fontWeight={500} listStyleType="none" justifyContent={"space-between"} w={"95%"} m="auto" alignContent={"center"}>
-            <Text _hover={{bg: "white",p: "20px 2px"}}>ALL CATEGORIES</Text>
-            <Text _hover={{ bg: "white", p: "20px 2px" }}>BOY FASHION</Text>
-            <Text _hover={{ bg: "white", p: "20px 2px" }}>GIRL FASHION</Text>
+            <Link to="/products/toys">
+              <Text _hover={{ bg: "white", p: "20px 2px" }}>   ALL CATEGORIES </Text>
+            </Link>
+            <Link to="/products/boy fashion">
+              <Text _hover={{ bg: "white", p: "20px 2px" }}>BOY FASHION</Text>
+            </Link>
+            <Link to="/products/girl fashion">
+              <Text _hover={{ bg: "white", p: "20px 2px" }}>GIRL FASHION</Text>
+            </Link>
             <Text _hover={{ bg: "white", p: "20px 2px" }}>FOOTWEAR</Text>
-            <Text _hover={{ bg: "white", p: "20px 2px" }}>TOYS</Text>
+            <Link to="/products/toys">
+              <Text _hover={{ bg: "white", p: "20px 2px" }}>TOYS</Text>
+            </Link>
             <Text _hover={{ bg: "white", p: "20px 2px" }}>DIAPERING</Text>
             <Text _hover={{ bg: "white", p: "20px 2px" }}>GEAR</Text>
             <Text _hover={{ bg: "white", p: "20px 2px" }}>FEEDING</Text>
