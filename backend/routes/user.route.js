@@ -6,6 +6,7 @@ const jwt=require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 
 
+
 userRouter.get("/get", async(req, res) => {
     try{
         const allusersdata = await UserModel.find()
