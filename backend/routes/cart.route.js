@@ -20,11 +20,20 @@ cartRouter.get('/',async(req,res)=>{
 
 
 cartRouter.post('/addtocart',async(req,res)=>{
+  
     try{
         const product = req.body
-        const Cart_product = new CartModel(product)
+        console.log('product',product.title)
+        let data = await CartModel.find({title:product.title})
+        console.log('data',data)
+        if(data.length > 0){
+            res.send({"msg":'Product present in Cart !'})
+        }
+        else{
+            const Cart_product = new CartModel(product)
         await Cart_product.save()
         res.send("Product is added to Cart")
+        }
     }catch(err){
         res.send({"err":err})
     }
@@ -53,7 +62,10 @@ cartRouter.delete('/cartdelete/:id',async(req,res)=>{
     try{
         let id = req.params.id
         await CartModel.findByIdAndDelete({_id:id})
-        res.send(`product with id ${id} removed from Cart`)
+        let quary = req.body.user
+        console.log(quary)
+        const data = await CartModel.find({user:quary})
+        res.send(data)
     }
     catch(err){
         console.log(err.message)
