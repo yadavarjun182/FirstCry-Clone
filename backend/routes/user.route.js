@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt')
 
 userRouter.get("/", (req, res) => {
     res.send("all users")
+    
 })
 
 

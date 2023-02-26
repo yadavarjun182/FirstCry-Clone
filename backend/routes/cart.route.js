@@ -10,7 +10,15 @@ cartRouter.get('/',async(req,res)=>{
         if(data.length <= 0){
             res.send('cart is empty !!!')
         }else{
-            res.send(data)
+            let total = 0
+            let price = 0
+            let discount = 0
+            for(let i=0; i<data.length; i++){
+                total = total+data[i].mrp;
+                price = price+((data[i].mrp+((data[i].mrp*data[i].discount)/100)))
+                discount = discount+((data[i].mrp*data[i].discount)/100)
+            }
+            res.send({'data':data,'total':total,"price":price,"discount":discount})
         }
       
     }catch(err){
@@ -20,12 +28,13 @@ cartRouter.get('/',async(req,res)=>{
 
 
 cartRouter.post('/addtocart',async(req,res)=>{
-  
+
     try{
         const product = req.body
+        console.log('daaaaaaaaaataaaaaaa',req.body)
         console.log('product',product.title)
         let data = await CartModel.find({title:product.title})
-        console.log('data',data)
+       // console.log('data',data)
         if(data.length > 0){
             res.send({"msg":'Product present in Cart !'})
         }
@@ -35,6 +44,7 @@ cartRouter.post('/addtocart',async(req,res)=>{
         res.send("Product is added to Cart")
         }
     }catch(err){
+        console.log({'err':err})
         res.send({"err":err})
     }
 })

@@ -9,6 +9,7 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import { GiCardPickup } from "react-icons/gi";
 import { MdRecycling } from "react-icons/md";
 
+
 // let pro = [
 // {
 //     name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
@@ -32,10 +33,11 @@ export const Cart = () => {
 
    const [pro,setPro] = useState([])
    const [total,setTotal] = useState(0)
-   const [count,setCount] = useState(0)
+   const [count,setCount] = useState(true)
    const [price,setPrice] = useState(0)
    const [discount,setdiscount] = useState(0)
    const toast = useToast()
+
 
    const handelQuantity = (x,id) => {
           console.log(id)
@@ -54,12 +56,11 @@ export const Cart = () => {
       .then(res =>{
           console.log(res)
           toast({
-            title: ' Product Removed From Cart !',
+            title: 'Product Removed From Cart !',
             position: "top",
             isClosable: true,
             status:'warning'
           })
-          setCount(count+1)
       })
   };
 
@@ -73,7 +74,10 @@ const GetCart = () => {
    }).then(res => res.json())
      .then(res => {
               console.log(res)
-              setPro(res)
+              setTotal(res.total)
+              setPro(res.data)
+              setPrice(res.price)
+              setdiscount(res.discount)
             })
      .catch(err => console.log(err))
 }
@@ -81,6 +85,7 @@ const GetCart = () => {
 
  useEffect(async ()=>{
    GetCart()
+
 },[])
 
 
