@@ -2,7 +2,6 @@ import { Box, Heading, HStack, Text, Image } from "@chakra-ui/react";
 import { Avatar, Rate, Space, Table, } from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";
-import AddProductAdmin from "../AddProduct/AddProductAdmin";
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
@@ -17,6 +16,7 @@ function Inventory() {
         setData(data);
       });
   }, []);
+  
 
   return (
     <Space size={20} direction="vertical">
@@ -46,8 +46,6 @@ function Inventory() {
               </tr>
             ))
           }
-
-
         </tbody>
 
       </table>
