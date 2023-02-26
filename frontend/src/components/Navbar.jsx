@@ -38,7 +38,6 @@ export default function Navbar() {
     const token=localStorage.getItem("token")
     //useEffect=(() =>
     //{
-        
     //},[token])
   const handlelogout = () => {
     //Setlogout(true)

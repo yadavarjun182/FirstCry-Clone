@@ -52,7 +52,6 @@ function Inventory() {
               ))
             }
           </tbody>
-
         </table>
       </Space>
     </div>
