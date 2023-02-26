@@ -1,9 +1,15 @@
 import React from "react";
+import { Routes, Route } from 'react-router-dom';
+import AdminRegister from "../components/Admin/AdminRegister";
 import { Routes, Route } from "react-router-dom";
-import AdminLogin from "../Components/Admin/AdminLogin";
 import AdminRegister from "../Components/Admin/AdminRegister";
-import 'react-toastify/dist/ReactToastify.css';
+import  AdminLogin  from "../Components/Admin/AdminLogin";
 import { AccoutDetails } from "../pages/AccountDetails/AccoutDetails";
+
+import {Login} from "../pages/Authantication/Login";
+import {Register} from "../pages/Authantication/signup";
+import {Cart} from "../pages/Cart";
+import Home from "../pages/home";
 import ProductsPage from "../pages/ProductsA/ProductsPage";
 import AdminDashboard from "../Components/Admin/AdminDashboard";
 import Customers from "../Components/Admin/Pages/Customers/index";
@@ -12,10 +18,11 @@ import Inventory from "../Components/Admin/Pages/Inventory/index";
 import Orders from "../Components/Admin/Pages/Orders/index";
 import Home from "../pages/home"
 
+
 export const AllRouts = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
+       <Route path="/" element={<Home />}></Route>
       <Route path="/accountdetails" element={AccoutDetails}></Route>
       <Route path="/products" element={<ProductsPage />}></Route>
       <Route path="/adminlogin" element={<AdminLogin />}></Route>
