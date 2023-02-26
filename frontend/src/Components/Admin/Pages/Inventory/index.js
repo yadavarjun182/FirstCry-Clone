@@ -20,6 +20,7 @@ function Inventory() {
   }, [data]);
 
   return (
+
     <div style={{ width: "88%", margin: "auto" }}>
       <Space size={20} direction="vertical">
         <HStack gap={"400px"}>
@@ -50,14 +51,11 @@ function Inventory() {
                 </tr>
               ))
             }
-
-
           </tbody>
 
         </table>
       </Space>
     </div>
-
   );
 }
 export default Inventory;

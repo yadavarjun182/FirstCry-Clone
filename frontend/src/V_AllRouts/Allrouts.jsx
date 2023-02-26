@@ -1,9 +1,7 @@
 import React from "react";
 import AdminRegister from "../Components/Admin/AdminRegister";
-
 import { Routes, Route } from "react-router-dom";
 import AdminLogin from "../Components/Admin/AdminLogin";
-
 import { AccoutDetails } from "../pages/AccountDetails/AccoutDetails";
 import { Login } from "../pages/Authantication/Login";
 import { Register } from "../pages/Authantication/signup";
@@ -24,12 +22,10 @@ export const AllRouts = () => {
       <Route path="/" element={<Home />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
-
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/accountdetails" element={AccoutDetails}></Route>
       <Route path="/products" element={<ProductsPage />}></Route>
       <Route path="/adminlogin" element={<AdminLogin />}></Route>
-
       <Route path="/adminregister" element={<AdminRegister />}></Route>
       <Route path="/admindashboard" element={<AdminDashboard />}></Route>
       <Route path="/admins" element={<Dashboard />}></Route>
