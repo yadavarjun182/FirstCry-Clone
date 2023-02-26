@@ -3,6 +3,7 @@ import { Avatar, Rate, Space, Table, } from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";
 import AddProductAdmin from "../AddProduct/AddProductAdmin";
+import "./index.module.css"
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
@@ -16,42 +17,47 @@ function Inventory() {
         console.log(data);
         setData(data);
       });
-  }, []);
+  }, [data]);
 
   return (
-    <Space size={20} direction="vertical">
-      <HStack gap={"400px"}>
-        <Heading level={4}>Inventory</Heading>
-        <Box><AddProductAdmin /></Box>
-      </HStack>
-      <table>
-        <thead>
-          <th>Id</th>
-          <th>PRODUCT</th>
-          <th>IMAGE</th>
-          <th>RATING</th>
-          <th>QUANTITY</th>
-          <th>PRICE</th>
-        </thead>
-        <tbody>
-          {
-            data && data.map((el) => (
-              <tr key={el._id}>
-                <td><Text>{el._id}</Text></td>
-                <td><Text>{el.title}</Text></td>
-                <td><Image src={el.thumbnail} alt={el.title} /></td>
-                <td><Text>{el.rating}</Text></td>
-                <td><Text>{el.quantity}</Text></td>
-                <td><Text>{el.mrp}</Text></td>
-              </tr>
-            ))
-          }
+    <div style={{ width: "88%", margin: "auto" }}>
+      <Space size={20} direction="vertical">
+        <HStack gap={"400px"}>
+          <Heading level={4}>Inventory</Heading>
+          <Box><AddProductAdmin /></Box>
+        </HStack>
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>PRODUCT</th>
+              <th>IMAGE</th>
+              <th>RATING</th>
+              <th>QUANTITY</th>
+              <th>PRICE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data && data.map((el) => (
+                <tr key={el._id}>
+                  <td><Text>{el._id}</Text></td>
+                  <td><Text>{el.title}</Text></td>
+                  <td><Image src={el.thumbnail} alt={el.title} width="70px" /></td>
+                  <td><Text>{el.rating}</Text></td>
+                  <td><Text>{el.quantity}</Text></td>
+                  <td><Text>{el.mrp}</Text></td>
+                </tr>
+              ))
+            }
 
 
-        </tbody>
+          </tbody>
 
-      </table>
-    </Space>
+        </table>
+      </Space>
+    </div>
+
   );
 }
 export default Inventory;
