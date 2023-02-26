@@ -2,7 +2,7 @@ import { Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Link, Button
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 export default function AdminLogin() {
 
