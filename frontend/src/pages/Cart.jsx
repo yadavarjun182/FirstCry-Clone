@@ -60,18 +60,14 @@ export const Cart = () => {
          headers: {
             "authorization": localStorage.getItem('token') //***To varify token*** */
          }
+      }).then(res => res.text()) 
+      .then(res =>{
+          console.log(res)
+          alert('Product Removed From Cart !')
+          setCount(count+1)
       })
-         .then(res => res.text())
-         .then(res => {
-            console.log(res)
-            toast({
-               title: 'Product Removed From Cart !',
-               position: "top",
-               isClosable: true,
-               status: 'warning'
-            })
-         })
-   };
+  };
+
 
 
    const GetCart = () => {
@@ -79,23 +75,24 @@ export const Cart = () => {
          headers: {
             "authorization": localStorage.getItem('token') //***To varify token*** */
          },
-         body: JSON.stringify()
-      }).then(res => res.json())
-         .then(res => {
-            console.log(res)
+
+         body:JSON.stringify()
+   }).then(res => res.json())
+     .then(res => 
+            {console.log(res)
             setTotal(res.total)
             setPro(res.data)
             setPrice(res.price)
-            setdiscount(res.discount)
-         })
-         .catch(err => console.log(err))
-   }
+            setdiscount(res.discount)}
+            )
+     .catch(err => console.log(err))
+}
 
 
-   useEffect(() => {
-      GetCart()
+ useEffect(()=>{
+   GetCart()
+},[count])
 
-   }, [])
 
 
    if (pro.length === 0) {

@@ -1,5 +1,6 @@
-import Navbar from "./Components/Navbar";
+
 import FooterPage from "./pages/FooterPage";
+import Navbar from './components/Navbar'
 import { AllRouts } from "./V_AllRouts/Allrouts";
 function App() {
   return (
@@ -8,7 +9,6 @@ function App() {
       <AllRouts />
       <FooterPage />
     </div>
-
   );
 }
 
