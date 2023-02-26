@@ -1,9 +1,8 @@
 import React,{useState} from "react";
-import { Box,Image,Text,Input,FormLabel} from '@chakra-ui/react';
+import { Box,Text,Input,FormLabel} from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { useToast } from '@chakra-ui/react';
 
-import logo from '../../images/logo_type1.jpg';
 
 let user = {
  name:'',
@@ -63,8 +62,10 @@ export const Register = () => {
 
     return(
 
-      <Box w={{base:"90%",md:'25%'}} m='auto' p='20px' mt='20px' mb ='30px'>
-             <Image  w='250px'm='auto' src={logo} alt='first cry' />
+
+      <Box w={{base:"90%",md:'25%'}} m='auto' p='20px' h={"100vh"} mt={{base:"10px",md:30}}>
+             {/*<Image  w='250px'm='auto' src={logo} alt='first cry' />*/}
+
              <br />
              <Text fontSize='2xl' as='b'>Register</Text>
              <br /><br />
@@ -82,7 +83,12 @@ export const Register = () => {
              <Input onChange={handelChange} name='password' value={User.password}  placeholder='Enter Your Password' size='md' />
              <br /><br />
              <Input type='submit' size='md' bg='orange' />
-             </form>
+            </form>
+            <br />
+            <br />
+            <Link to='/login' >
+              <Text fontSize='sm' color='blue' mt='20px'>Already have account ? Login Here</Text>
+            </Link>
       </Box>
       
     )
