@@ -22,7 +22,7 @@ function Inventory() {
     <Space size={20} direction="vertical">
       <HStack gap={"400px"}>
         <Heading level={4}>Inventory</Heading>
-        <Box><AddProductAdmin /></Box>
+        {/*<Box><AddProductAdmin /></Box>*/}
       </HStack>
       <table>
         <thead>
