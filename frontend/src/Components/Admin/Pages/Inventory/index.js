@@ -26,12 +26,12 @@ function Inventory() {
       </HStack>
       <table>
         <thead>
-          <td>Id</td>
-          <td>PRODUCT</td>
-          <td>IMAGE</td>
-          <td>RATING</td>
-          <td>QUANTITY</td>
-          <td>PRICE</td>
+          <th>Id</th>
+          <th>PRODUCT</th>
+          <th>IMAGE</th>
+          <th>RATING</th>
+          <th>QUANTITY</th>
+          <th>PRICE</th>
         </thead>
         <tbody>
           {
@@ -46,8 +46,6 @@ function Inventory() {
               </tr>
             ))
           }
-
-
         </tbody>
 
       </table>
