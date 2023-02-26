@@ -50,14 +50,10 @@ function Inventory() {
                 </tr>
               ))
             }
-
-
           </tbody>
-
         </table>
       </Space>
     </div>
-
   );
 }
 export default Inventory;
