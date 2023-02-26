@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProductsPage.module.css";
+import { useToast } from '@chakra-ui/react';
 import { BiRupee } from "react-icons/bi";
 import { Box, Flex, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
@@ -72,7 +73,7 @@ const ProductsPage = () => {
   const [ProdArr, setProdArr] = useState([])
   const location = useLocation()
   console.log(location.search)
-
+  const toast = useToast()
   const params = useParams()
   console.log(params)
   // const ProdArr = [
@@ -564,18 +565,52 @@ const ProductsPage = () => {
   //   }
   // ]
 
+const AddtoCart = async(payload) => {
+
+  let data = {
+    title:payload.title,
+    thumbnail:payload.thumbnail,
+    mrp:payload.mrp,
+    Cart_quantity:1,
+    mrp:payload.mrp,
+    discount:payload.discount
+  }
+  
+  fetch('http://localhost:7300/cart/addtocart',{
+    method:'POST',
+    headers:{
+        "Content-type":"application/json",
+        "authorization":localStorage.getItem('token')
+    },
+    body:JSON.stringify(data)
+}).then(res => res.json())
+.then(res =>
+  toast({
+    title: 'Product is Added to  Cart !',
+    position: "top",
+    isClosable: true,
+    status:'warning'
+  })
+)
+
+.catch(err => console.log(err))
+}
+
+
+
+
   const getAllProducts = async () => {
 
    if (location) {
       await axios.get(`http://localhost:7300/products/get/${location.search}`).then((res) => {
-        console.log(res.data)
+       // console.log(res.data)
         setProdArr(res.data)
       })
     }
   
     else {
       await axios.get(`http://localhost:7300/products/get`).then((res) => {
-        console.log(res.data)
+        //console.log(res.data)
         setProdArr(res.data)
       })
     }
@@ -626,7 +661,7 @@ const ProductsPage = () => {
                 </Flex>
 
                 <Flex mt='12px' gap='5px'>
-                  <Button colorScheme='orange'>ADD TO CART</Button>
+                  <Button onClick={()=>AddtoCart(ele)} colorScheme='orange'>ADD TO CART</Button>
                   <Button display={{ base: 'none', md: 'block' }}>SHORTLIST</Button>
                 </Flex>
               </Box>
