@@ -22,14 +22,15 @@ import PageContent from "./Components/Admin/Components/PageContent/index";
 import AppHeader from './Components/Admin/Components/AppHeader';
 import { AllRouts } from "./V_AllRouts/Allrouts";
 import { ToastContainer } from "react-toastify";
-
+import Navbar from "../src/Components/Navbar"
 
 function App() {
   return (
 
     <div>
+      <Navbar />
       <AllRouts />
- </div>
+    </div>
   );
 }
 

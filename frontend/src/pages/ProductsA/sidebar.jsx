@@ -84,7 +84,7 @@ export const Sidebar = () => {
   return (
     <Box p='10px'>
 
-      <Box> r
+      <Box>
         <Text mb='9px'>DISCOUNT</Text>
 
 
