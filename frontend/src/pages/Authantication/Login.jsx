@@ -14,7 +14,6 @@ export const Login = () => {
   const toast = useToast()
 
   const GotoLogin = async (payload) => {
-    //console.log(payload)
     fetch('http://localhost:7300/users/login', {
       method: 'POST',
       headers: {
