@@ -4,24 +4,37 @@ const { ProductModel } = require("../model/product.model");
 
 
 productRouter.get('/get', async (req, res) => {
-    // let { rating } = req.query
-
     const query = req.query
     try {
         let data = await ProductModel.find(query)
         console.log('Data count:', data.length)
         res.status(200).send(data)
     } catch (err) {
-        console.log("arjun")
         console.log({ "err": err.message })
         res.status(404).send({ 'err': err.message })
     }
 })
 
+// productRouter.get('/get/:category', async (req, res) => {
+//     const params = req.params
+//     console.log(params)
+//     const query = req.query
+//     console.log("query", query)
+//     try {
+//         let data = await ProductModel.find(params, query)
+//         console.log('Data count:', data.length)
+//         res.status(200).send(data)
+//     } catch (err) {
+//         console.log("arjun")
+//         console.log({ "err": err.message })
+//         res.status(404).send({ 'err': err.message })
+//     }
+// })
+
 
 productRouter.post('/add', async (req, res) => {
     try {
-         const payload = req.body
+        const payload = req.body
         // const prodArr= ProductModel.insertMany()
         console.log(payload)
         const newproduct = new ProductModel(payload)
