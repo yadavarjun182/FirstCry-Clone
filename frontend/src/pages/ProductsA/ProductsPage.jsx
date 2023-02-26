@@ -605,7 +605,7 @@ const ProductsPage = () => {
           ) : <SimpleGrid columns={{ base: 2, md: 4 }} spacing='5px'>
 
             {ProdArr && ProdArr.map((ele) => (
-              <Box p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
+              <Box key={ele._id} p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
                 <Image w='100%' src={ele.thumbnail} alt={ele.title} />
                 <Text lineHeight='15px' fontSize='14px'>{ele.title}</Text>
                 <Text mt='5px' fontSize='12px' lineHeight='13px'>{ele.description}</Text>

@@ -7,7 +7,7 @@ export const getRevenue = () => {
 };
 
 export const getInventory = () => {
-  return fetch("http://localhost:7300/products/get/").then((res) => res.json());
+  return fetch("http://localhost:7300/products/get").then((res) => res.json());
 };
 
 export const getCustomers = () => {
