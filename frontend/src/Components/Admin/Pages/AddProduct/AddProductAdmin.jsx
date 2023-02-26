@@ -7,19 +7,9 @@ import {
     AlertDialogOverlay,
     useDisclosure,
     Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Input,
-    Box,
     Stack,
     HStack,
   } from '@chakra-ui/react'
@@ -27,50 +17,38 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function AddProductAdmin() {
-    const cancelRef = React.useRef()
-    let info = {
-      title: "",
-      description: "",
-      mrp: "",
-      discount: "",
-      brand: "",
-      category: "",
-      gender: "",
-      quantity: "",
-      rating: "",
-      thumbnail: "",
-      images: "",
-      specification: "",
-    };
-const [product, setProduct] = useState(info);
-const [data, setData] = useState([]);
-const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef()
+  const [title, setTitle] = useState("");
+  const [description, setDecsription] = useState("");
+  const [mrp, setMrp] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [gender, setGender] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [rating, setRating] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [images, setImages] = useState([]);
+  const [specification, setSpecification] = useState("");
 
-const addtoDBS = (payload) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+const handleSubmit = (e) => {
+  const productData = {title, description, mrp, discount, brand, category, gender, quantity, rating, thumbnail, images, specification };
+  console.log(productData);
+
   fetch("http://localhost:7300/products/add", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(productData),
   })
     .then((res) => res.json())
+      console.log(productData)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
-
-const handelchange = (e) => {
-  let { name, value, type } = e.target;
-  let valpro = type === "number" ? Number(value) : value;
-  setProduct({ ...product, [name]: valpro });
-};
-
-const submitData = (event) => {
-  event.preventDefault();
-  addtoDBS(product);
-  setProduct(info);
-};
-
   
     return (
       <>
@@ -90,19 +68,16 @@ const submitData = (event) => {
               </AlertDialogHeader>
   
               <AlertDialogBody>
-                
-              </AlertDialogBody>
-              <form
-              onSubmit={submitData}
+              <form id='product-form'
                       >
                           <Stack>
               <FormControl isRequired>
                 <FormLabel>Title</FormLabel>
                 <Input
                   name="title"
-                  value={product.title}
+                  value={title}
                   placeholder="title"
-                  onChange={handelchange}
+                  onChange={e => setTitle(e.target.value)}
                   type="text"
                 />
               </FormControl>
@@ -111,21 +86,21 @@ const submitData = (event) => {
                 <FormLabel>Description</FormLabel>
                 <Input
                   name="description"
-                  value={product.description}
+                  value={description}
                   placeholder="description----"
-                  onChange={handelchange}
+                  onChange={e => setDecsription(e.target.value)}
                   type="text"
-                                  />
-                                  </FormControl>
+                  />
+                  </FormControl>
                               <br />
                               <HStack>
                 <FormControl isRequired>
                   <FormLabel>MPR</FormLabel>
                   <Input
                     name="mrp"
-                    value={product.mrp}
+                    value={mrp}
                     placeholder="mrp"
-                    onChange={handelchange}
+                    onChange={e => setMrp(e.target.value)}
                     type="text"
                   />
                 </FormControl>
@@ -134,9 +109,9 @@ const submitData = (event) => {
                   <FormLabel>Discount</FormLabel>
                   <Input
                     name="discount"
-                    value={product.discount}
+                    value={discount}
                     placeholder="discount"
-                    onChange={handelchange}
+                    onChange={e => setDiscount(e.target.value)}
                     type="number"
                   />
                 </FormControl>
@@ -145,9 +120,9 @@ const submitData = (event) => {
                   <FormLabel>Brand</FormLabel>
                   <Input
                     name="brand"
-                    value={product.brand}
+                    value={brand}
                     placeholder="brand"
-                    onChange={handelchange}
+                    onChange={e => setBrand(e.target.value)}
                     type="text"
                   />
                                   </FormControl>
@@ -157,9 +132,9 @@ const submitData = (event) => {
                   <FormLabel>Category</FormLabel>
                   <Input
                     name="category"
-                    value={product.category}
+                    value={category}
                     placeholder="category"
-                    onChange={handelchange}
+                    onChange={e => setCategory(e.target.value)}
                     type="text"
                   />
                 </FormControl>
@@ -169,9 +144,9 @@ const submitData = (event) => {
                   <FormLabel>Gender</FormLabel>
                   <Input
                     name="gender"
-                    value={product.gender}
+                    value={gender}
                     placeholder="gender"
-                    onChange={handelchange}
+                    onChange={e => setGender(e.target.value)}
                     type="text"
                   />
                 </FormControl>
@@ -180,9 +155,9 @@ const submitData = (event) => {
                   <FormLabel>Quantity</FormLabel>
                   <Input
                     name="quantity"
-                    value={product.quantity}
+                    value={quantity}
                     placeholder="quantity"
-                    onChange={handelchange}
+                    onChange={e => setQuantity(e.target.value)}
                     type="name"
                   />
                 </FormControl>
@@ -191,9 +166,9 @@ const submitData = (event) => {
                   <FormLabel>Rating</FormLabel>
                   <Input
                     name="rating"
-                    value={product.rating}
+                    value={rating}
                     placeholder="rating"
-                    onChange={handelchange}
+                    onChange={e => setRating(e.target.value)}
                     type="number"
                   />
                                   </FormControl>
@@ -204,9 +179,20 @@ const submitData = (event) => {
                   <FormLabel>Thumbnail</FormLabel>
                   <Input
                     name="thumbnail"
-                    value={product.thumbnail}
+                    value={thumbnail}
                     placeholder="thumbnail"
-                    onChange={handelchange}
+                    onChange={e => setThumbnail(e.target.value)}
+                    type="text"
+                  />
+                </FormControl>
+                <br />
+                <FormControl isRequired>
+                  <FormLabel>Images</FormLabel>
+                  <Input
+                    name="images"
+                    value={images}
+                    placeholder="images"
+                    onChange={e => setImages(e.target.value)}
                     type="text"
                   />
                 </FormControl>
@@ -215,23 +201,22 @@ const submitData = (event) => {
                   <FormLabel>Specification</FormLabel>
                   <Input
                     name="specification"
-                    value={product.specification}
+                    value={specification}
                     placeholder="specification"
-                    onChange={handelchange}
+                    onChange={e => setSpecification(e.target.value)}
                     type="text"
                   />
                 </FormControl>
                           </Stack>
-                          <FormControl isRequired bg={'facebook.400'} borderRadius={8}  _hover={{bg:'whatsapp.400'}}>
-                <Input type="submit" value={"SUBMIT"} color='white' fontSize={22} />
-              </FormControl>
             </form>
+              </AlertDialogBody>
+              
               <AlertDialogFooter>
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme='blue' onClick={onClose} ml={3}>
-                  Delete
+                <Button colorScheme='blue' onClick={handleSubmit} ml={3}>
+                  Add
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>

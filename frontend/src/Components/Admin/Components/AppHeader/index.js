@@ -1,13 +1,10 @@
-import { BellFilled, MailOutlined } from "@ant-design/icons";
-import { Badge, Image, Space, Typography } from "antd";
+import { Image, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getComments, getOrders } from "../../API";
 
 function AppHeader() {
-  const [comments, setComments] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [commentsOpen, setCommentsOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [ setComments] = useState([]);
+  const [ setOrders] = useState([]);
 
   useEffect(() => {
     getComments().then((res) => {
@@ -26,22 +23,6 @@ function AppHeader() {
       ></Image>
       <Typography.Title>Admin Dashboard</Typography.Title>
       <Space>
-        <Badge count={comments.length} dot>
-          <MailOutlined
-            style={{ fontSize: 24 }}
-            onClick={() => {
-              setCommentsOpen(true);
-            }}
-          />
-        </Badge>
-        <Badge count={orders.length}>
-          <BellFilled
-            style={{ fontSize: 24 }}
-            onClick={() => {
-              setNotificationsOpen(true);
-            }}
-          />
-        </Badge>
       </Space>
     </div>
   );
