@@ -1,8 +1,7 @@
-import { Box, Heading, HStack, VStack } from "@chakra-ui/react";
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Box, Heading, HStack } from "@chakra-ui/react";
+import { Avatar, Rate, Space, Table,} from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";
-import { AddProduct } from "../AddProduct";
 import AddProductAdmin from "../AddProduct/AddProductAdmin";
 
 function Inventory() {
@@ -51,7 +50,7 @@ function Inventory() {
           },
           {
             title: "Quantity",
-            dataIndex: "stock",
+            dataIndex: "quantity",
           },
 
           {
