@@ -583,6 +583,7 @@ const ProductsPage = () => {
   }, [location])
 
 
+
   return (
     <Box bg='#ffffff' mt='20px' mb='30px'>
       <Flex w='95%' m='auto' gap='20px' flexDirection={{ base: 'column', md: 'row' }}>
@@ -593,6 +594,15 @@ const ProductsPage = () => {
 
         <Box w={{ base: '95%', md: '80%' }} >
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing='5px'>
+            {/* {  ProdArr.length === 0? 
+    return (
+      <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
+        <Image m='auto' src='https://www.aamtrading.com/assets/img/nproduct.png ' alt='cart_is_empty' />
+
+      </Box>
+    ):"hi"
+  
+  } */}
             {ProdArr && ProdArr.map((ele) => (
               <Box p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
                 <Image w='100%' src={ele.thumbnail} alt={ele.title} />

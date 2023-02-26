@@ -1,10 +1,6 @@
-
-
-
-import Navbar from './components/Navbar';
 import FooterPage from "./pages/FooterPage";
-
-import {AllRouts} from "./V_AllRouts/Allrouts";
+import { AllRouts } from "./V_AllRouts/Allrouts";
+import Navbar from "../src/Components/Navbar"
 
 function App() {
   return (
@@ -13,6 +9,7 @@ function App() {
       <AllRouts/>
       <FooterPage />
       </div>
+
   );
 }
 
