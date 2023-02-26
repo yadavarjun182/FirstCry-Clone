@@ -55,12 +55,8 @@ export const Cart = () => {
       .then(res => res.text()) 
       .then(res =>{
           console.log(res)
-          toast({
-            title: 'Product Removed From Cart !',
-            position: "top",
-            isClosable: true,
-            status:'warning'
-          })
+          alert('Product Removed From Cart !')
+          setCount(count+1)
       })
   };
 
@@ -72,21 +68,20 @@ const GetCart = () => {
          },
          body:JSON.stringify()
    }).then(res => res.json())
-     .then(res => {
-              console.log(res)
-              setTotal(res.total)
-              setPro(res.data)
-              setPrice(res.price)
-              setdiscount(res.discount)
-            })
+     .then(res => 
+            {console.log(res)
+            setTotal(res.total)
+            setPro(res.data)
+            setPrice(res.price)
+            setdiscount(res.discount)}
+            )
      .catch(err => console.log(err))
 }
 
 
- useEffect(async ()=>{
+ useEffect(()=>{
    GetCart()
-
-},[])
+},[count])
 
 
    if(pro.length=== 0){
