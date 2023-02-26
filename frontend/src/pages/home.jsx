@@ -2,10 +2,11 @@
 import {Box} from "@chakra-ui/react";
 
 import React from "react";
-import Slider from "../components/carsole/Slidersection";
-import PosterGirlBoy from "../components/PosterGirlBoy";
-import PremiumBoutiques from "../components/PremiumBoutiques";
-import SpringList from "../components/SpringList";
+import Slider from "../Components/carsole/Slidersection";
+import PosterGirlBoy from "../Components/PosterGirlBoy";
+import PremiumBoutiques from "../Components/PremiumBoutiques";
+
+import SpringList from "../Components/SpringList";
 import FooterPage from "./FooterPage";
 
 const Home = () => {
@@ -23,6 +24,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-

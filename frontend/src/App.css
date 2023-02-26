@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -25,6 +30,23 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.SideMenuAndPageContent{
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.05) ;
+}
+.SideMenu{
+  height: 100%;
+}
+.SideMenuVertical{
+  height: 100%;
+}
+.PageContent{
+  padding-left: 12px;
 }
 
 @keyframes App-logo-spin {
