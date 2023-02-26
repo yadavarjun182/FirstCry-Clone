@@ -6,9 +6,14 @@ const jwt=require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 
 
-userRouter.get("/", (req, res) => {
-    res.send("all users")
-    
+
+userRouter.get("/get", async(req, res) => {
+    try{
+        const allusersdata = await UserModel.find()
+        res.send(allusersdata)
+    }catch(err){
+        res.send({"err":err.message})
+    }
 })
 
 

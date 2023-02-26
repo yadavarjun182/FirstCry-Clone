@@ -21,7 +21,7 @@ import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineSearch } from 'react-ic
 import { Link } from "react-router-dom";
 import Navbar2 from "./Navbar2";
 import NavLink from "./NavLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Links = [
   { name: "BOYS FASHION", id: "/" },
@@ -34,9 +34,16 @@ const Links = [
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [login, Setlogout] = useState(false)
+    //const [login,Setlogout]=useState(false)
+    const token=localStorage.getItem("token")
+    //useEffect=(() =>
+    //{
+        
+    //},[token])
   const handlelogout = () => {
-    Setlogout(true)
+    //Setlogout(true)
+      localStorage.clear()
+      window.location.reload()
   }
 
   return (
@@ -72,7 +79,7 @@ export default function Navbar() {
               <ListItem pt={1}>Support |</ListItem>
               <ListItem pt={1}>Track Order |</ListItem>
               <ListItem pt={1}>FirstCry Parenting |</ListItem>
-              {login ? <Link to={'/login'}>
+              {!token ? <Link to={'/login'}>
                 <ListItem pt={1}>Login/Register |</ListItem></Link> : <Box pt={1}><Menu>
                   <MenuButton righticon={<ChevronDownIcon />}>
                     My Account

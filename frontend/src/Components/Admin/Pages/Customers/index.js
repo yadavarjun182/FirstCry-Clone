@@ -1,67 +1,60 @@
-import { Avatar, Space, Table, Typography } from "antd";
+import { Heading } from "@chakra-ui/layout";
+import { Space, } from "antd";
 import { useEffect, useState } from "react";
-import { getCustomers } from "../../API";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from '@chakra-ui/react'
 
 function Customers() {
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
-    getCustomers().then((res) => {
-      setDataSource(res.users);
-      setLoading(false);
-    });
+    fetch("http://localhost:7300/users/get/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      });
   }, []);
 
   return (
+    <div style={{width:"50%", margin:"auto"}}>
     <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Customers</Typography.Title>
-      <Table
-        loading={loading}
-        columns={[
-          {
-            title: "Photo",
-            dataIndex: "image",
-            render: (link) => {
-              return <Avatar src={link} />;
-            },
-          },
-          {
-            title: "First Name",
-            dataIndex: "firstName",
-          },
-          {
-            title: "LastName",
-            dataIndex: "lastName",
-          },
-          {
-            title: "Email",
-            dataIndex: "email",
-          },
-          {
-            title: "Phone",
-            dataIndex: "phone",
-          },
-
-          {
-            title: "address",
-            dataIndex: "address",
-            render: (address) => {
-              return (
-                <span>
-                  {address.address}, {address.city}
-                </span>
-              );
-            },
-          },
-        ]}
-        dataSource={dataSource}
-        pagination={{
-          pageSize: 5,
-        }}
-      ></Table>
+      <Heading level={4}>Customers</Heading>
+      <TableContainer>
+  <Table variant='striped' colorScheme='teal' marginLeft={"auto"} marginRight={"auto"} >
+    <TableCaption>All User's Data Display Here</TableCaption>
+    <Thead>
+      <Tr>
+        <Th>User ID</Th>
+        <Th>Name</Th>
+        <Th>Contact</Th>
+        <Th>Email</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+      { data && data.map((el) => (
+          <Tr>
+          <Td>{el._id}</Td>
+          <Td>{el.name}</Td>
+          <Td>{el.contact}</Td>
+          <Td>{el.email}</Td>
+        </Tr>
+      ))}
+    </Tbody>
+  </Table>
+</TableContainer>
     </Space>
+    </div>
   );
 }
 export default Customers;
