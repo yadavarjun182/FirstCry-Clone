@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {Box,Flex,Image,Text,Divider,Button,Radio} from '@chakra-ui/react';
-
+import { useToast } from '@chakra-ui/react';
 import { BiRupee } from "react-icons/bi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -31,31 +31,57 @@ import { MdRecycling } from "react-icons/md";
 export const Cart = () => {
 
    const [pro,setPro] = useState([])
+   const [total,setTotal] = useState(0)
+   const [count,setCount] = useState(0)
+   const [price,setPrice] = useState(0)
+   const [discount,setdiscount] = useState(0)
+   const toast = useToast()
+
+   const handelQuantity = (x,id) => {
+          console.log(id)
+   };
 
 
-   const handelDelete = (id) => {
-         console.log(id)
-   }
+   const handelDelete= (id) => {
+      console.log(id)
+      fetch('http://localhost:7300/cart/cartdelete/'+ id,{
+          method:'DELETE',
+          headers:{
+              "authorization":localStorage.getItem('token') //***To varify token*** */
+          }
+      })
+      .then(res => res.text()) 
+      .then(res =>{
+          console.log(res)
+          toast({
+            title: ' Product Removed From Cart !',
+            position: "top",
+            isClosable: true,
+            status:'warning'
+          })
+          setCount(count+1)
+      })
+  };
 
-const GetCart = async() => {
-      fetch('http://localhost:7300/cart/',{
-         headers:{
-            "authorization":localStorage.getItem('token') //***To varify token*** */
-            },
-            body:JSON.stringify()
-      }).then(res => res.json())
-        .then(res => {
-                 console.log(res)
-                 setPro(res)
-               })
-        .catch(err => console.log(err))
+
+const GetCart = () => {
+   fetch('http://localhost:7300/cart/',{
+      headers:{
+         "authorization":localStorage.getItem('token') //***To varify token*** */
+         },
+         body:JSON.stringify()
+   }).then(res => res.json())
+     .then(res => {
+              console.log(res)
+              setPro(res)
+            })
+     .catch(err => console.log(err))
 }
 
 
-useEffect(()=>{
-  GetCart()
+ useEffect(async ()=>{
+   GetCart()
 },[])
-
 
 
    if(pro.length=== 0){
@@ -73,10 +99,11 @@ useEffect(()=>{
 
          <Flex w='90%' m='auto' justifyContent='space-around' flexDirection={{base:'column',md:'row'}} >
          <Box w={{base:'100%',md:'60%'}} m='auto' p='10px' boxShadow='xs' rounded='md' bg='white'>
-            {pro && pro.map((ele,i)=>(
-            <Box key={i} mb='20px'>
+            {pro && pro.map((ele)=>(
+              
+            <Box key={ele._id} mb='20px'>
+               
                 <Flex gap='20px' p='10px' flexDirection={{base:'column',md:'row'}}  borderBottom='1px solid gray' borderTop='1px solid gray' >
-
                     <Box w={{base:'90%',md:'18%'}} p='10px'>
                      <Image m='auto' w='100%' src={ele.thumbnail} alt={ele.title} />
                     </Box>
@@ -92,22 +119,22 @@ useEffect(()=>{
                        <Flex as='b' fontSize='20px' alignItems='center'><BiRupee/><Text>{ele.mrp}</Text></Flex>
                        <Flex gap='5px' alignItems='center' fontSize='15px'>
                         <Text>MRP</Text> 
-                        <Flex alignItems='center'><BiRupee/><Text as='del'>{Math.floor(ele.price+((ele.price*ele.discount)/100))}</Text></Flex>
+                        <Flex alignItems='center'><BiRupee/><Text as='del'>{Math.floor(ele.mrp+((ele.mrp*ele.discount)/100))}</Text></Flex>
                         <Text fontSize='13px' color='red'>{ele.discount} % OFF </Text>
                        </Flex>
                        <Text mb='10px' fontSize='15px'>MRP Includes all taxes</Text>
 
                        <Flex gap='3px'>
-                        <Button size='sm'>+</Button>
+                        <Button onClick={()=>handelQuantity(1,ele._id)} size='sm'>+</Button>
                         <Button size='sm'>Qty : {ele.quantity}</Button>
-                        <Button size='sm'>-</Button>
+                        <Button onClick={()=>handelQuantity(-1,ele._id)} size='sm'>-</Button>
                        </Flex>  
                     </Box>
 
                 </Flex>
 
             <Flex gap='5px'>
-            <Button onClick={()=>handelDelete(ele)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
+            <Button onClick={()=>handelDelete(ele._id)} leftIcon={<RiDeleteBin6Line/>} bg='transparent' variant='solid'>REMOVE</Button>
             <Button leftIcon={<FiHeart/>} bg='transparent' variant='solid'>MOVE TO SHORTLIST</Button>
             </Flex>
 
@@ -119,14 +146,14 @@ useEffect(()=>{
                 
                 <Flex gap='20px' flexDirection={{base:'column',md:'row'}}>
                    <Button size='md' w={{base:'80%',md:'50%'}} colorScheme='orange'>
-                    {localStorage.getItem('token') ? "ADD TO CART" : "LOGIN TO PLACE ORDER"}
+                    {localStorage.getItem('token') ? "GO FOR PAYMENT" : "LOGIN TO PLACE ORDER"}
                    </Button>
 
                     <Button size='md' w={{base:'80%',md:'30%'}} bg='gray' alignItems='center' >
                       <Flex justifyContent='space-between' gap='25px'>
                        <Box >
                          <Text fontSize='10px'>Total</Text>
-                         <Text>'TOTAL</Text>
+                         <Text>{total}.00</Text>
                        </Box>
                        <Text>PLACE ORDER</Text>
                       </Flex>
@@ -156,34 +183,33 @@ useEffect(()=>{
              <Text as='b' fontSize='lg'>Payment Information</Text>
              <Flex mt='8px' gap='30px' justifyContent='space-between'>
                 <Text>Value of Product(s)</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>{Math.floor(price)}:00</Text></Flex>
              </Flex>
-             <Flex gap='30px' justifyContent='space-between'>
+             <Flex color='#c0ba42' gap='30px' justifyContent='space-between'>
                 <Text>Discount(-)</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>{Math.floor(discount)}</Text></Flex>
              </Flex>
              <Flex gap='30px' justifyContent='space-between'>
                 <Text>Estimated GST(+)</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>{Math.floor(total*0.18)}</Text></Flex>
              </Flex>
-             <Flex mb='8px' gap='30px' justifyContent='space-between'>
+             <Flex color='#c0ba42' mb='8px' gap='30px' justifyContent='space-between'>
                 <Text>Shipping(+)</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>FREE</Text></Flex>
              </Flex>
              <Divider border='1px solid gray'/>
              <Flex mt='5px' mb='5px' gap='30px' as='b' justifyContent='space-between'>
                 <Text >Sub Total</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>{Math.floor(total+(total*0.18))}</Text></Flex>
              </Flex>
              <Divider border='1px solid gray'/>
              <Flex mt='5px' mb='5px' gap='30px'as='b' justifyContent='space-between'>
                 <Text >Final Payment</Text>
-                <Flex alignItems='center'><BiRupee/>{''}<Text>{3892.00}</Text></Flex>
+                <Flex alignItems='center'><BiRupee/>{''}<Text>{Math.floor(total+(total*0.18))}</Text></Flex>
              </Flex>
              </Box>
 
            </Box>
-
          </Flex>
 
          <Flex justifyContent='space-between' w='82%' m='auto' mt='30px' display={{base:'none',md:'flex'}}>

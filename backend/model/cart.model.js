@@ -2,9 +2,11 @@ const mongoose = require ("mongoose")
 
 const cartSchema = mongoose.Schema({
     title:String,
-    img:String,
-    price:Number,
-    quantity:Number,
+    thumbnail:String,
+    mrp:Number,
+    Cart_quantity:Number,
+    mrp:Number,
+    discount:Number,
     user:String
 })
 
