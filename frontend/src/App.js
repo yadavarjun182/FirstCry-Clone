@@ -1,3 +1,4 @@
+
 import FooterPage from "./pages/FooterPage";
 
 import { Cart } from "./pages/Cart";
@@ -11,14 +12,15 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 
 import { AllRouts } from "./V_AllRouts/Allrouts";
 import Navbar from "../src/Components/Navbar"
+import { AllRouts } from "./V_AllRouts/Allrouts";
+import FooterPage from "./pages/FooterPage";
 
 function App() {
   return (
     <div>
-      <Navbar/>
-      <AllRouts/>
-      <FooterPage />
-      </div>
+      <Navbar />
+      <AllRouts />
+    </div>
 
   );
 }

@@ -5,7 +5,7 @@ import { Box, Flex, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { Sidebar } from "./sidebar";
 import axios from "axios"
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 // let product = [
 //   {
@@ -73,6 +73,8 @@ const ProductsPage = () => {
   const location = useLocation()
   console.log(location.search)
 
+  const params = useParams()
+  console.log(params)
   // const ProdArr = [
   //   {
   //     "_id": "63f9f4f7302d596511b949d8",
@@ -562,15 +564,17 @@ const ProductsPage = () => {
   //   }
   // ]
 
-  const getAllProducts = () => {
-    if (location) {
-      axios.get(`http://localhost:7300/products/get/${location.search}`).then((res) => {
+  const getAllProducts = async () => {
+
+   if (location) {
+      await axios.get(`http://localhost:7300/products/get/${location.search}`).then((res) => {
         console.log(res.data)
         setProdArr(res.data)
       })
-
-    } else {
-      axios.get("http://localhost:7300/products/get").then((res) => {
+    }
+  
+    else {
+      await axios.get(`http://localhost:7300/products/get`).then((res) => {
         console.log(res.data)
         setProdArr(res.data)
       })
@@ -593,16 +597,13 @@ const ProductsPage = () => {
         </Box>
 
         <Box w={{ base: '95%', md: '80%' }} >
-          <SimpleGrid columns={{ base: 2, md: 4 }} spacing='5px'>
-            {/* {  ProdArr.length === 0? 
-    return (
-      <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
-        <Image m='auto' src='https://www.aamtrading.com/assets/img/nproduct.png ' alt='cart_is_empty' />
+          {ProdArr.length === 0 ? (
+            <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
+              <Image m='auto' src='https://www.aamtrading.com/assets/img/nproduct.png ' alt='cart_is_empty' />
 
-      </Box>
-    ):"hi"
-  
-  } */}
+            </Box>
+          ) : <SimpleGrid columns={{ base: 2, md: 4 }} spacing='5px'>
+
             {ProdArr && ProdArr.map((ele) => (
               <Box p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
                 <Image w='100%' src={ele.thumbnail} alt={ele.title} />
@@ -631,6 +632,8 @@ const ProductsPage = () => {
               </Box>
             ))}
           </SimpleGrid>
+
+          }
         </Box>
 
       </Flex>
