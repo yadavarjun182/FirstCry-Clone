@@ -1,8 +1,7 @@
 import React,{useState} from "react";
-import { Box,Image,Text,Input,FormLabel,Divider} from '@chakra-ui/react';
+import { Box,Text,Input,FormLabel,Divider} from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
-import logo from '../../images/logo_type1.jpg';
 
 let user = {
  email:'',
@@ -49,11 +48,11 @@ export const Login = () => {
 
 
     return(
+      <Box w={{base:"90%",md:'25%'}} m='auto' h={"70vh"} mt={{base:"10px",md:30}}>
+             {/*<Image  w='250px'm='auto' src={logo} alt='first cry' />*/}
 
-      <Box w={{base:"90%",md:'25%'}} m='auto' mt='20px' mb='50px'>
-             <Image  w='250px'm='auto' src={logo} alt='first cry' />
             
-             <Text fontSize='2xl' as='b'>Login</Text>
+             <Text fontSize='2xl' as='b' textAlign={'center'}>Login</Text>
              <br /><br />
              <form onSubmit={handelsubmit}>
              <FormLabel fontSize='sm'color='gray' >Email ID</FormLabel>

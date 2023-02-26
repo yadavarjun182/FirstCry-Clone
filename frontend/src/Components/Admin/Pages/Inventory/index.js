@@ -1,6 +1,9 @@
+import { Box, Heading, HStack, VStack } from "@chakra-ui/react";
 import { Avatar, Rate, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";
+import { AddProduct } from "../AddProduct";
+import AddProductAdmin from "../AddProduct/AddProductAdmin";
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
@@ -16,7 +19,10 @@ function Inventory() {
 
   return (
     <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Inventory</Typography.Title>
+      <HStack gap={"400px"}>
+      <Heading level={4}>Inventory</Heading>
+      <Box><AddProductAdmin /></Box>
+      </HStack>
       <Table
         loading={loading}
         columns={[
