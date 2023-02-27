@@ -1,6 +1,6 @@
 
 import FooterPage from "./pages/FooterPage";
-import Navbar from './components/Navbar'
+import Navbar from './Components/Navbar'
 import { AllRouts } from "./V_AllRouts/Allrouts";
 function App() {
   return (

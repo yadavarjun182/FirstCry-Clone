@@ -9,22 +9,6 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import { GiCardPickup } from "react-icons/gi";
 import { MdRecycling } from "react-icons/md";
 import { useNavigate } from "react-router-dom"
-// let pro = [
-// {
-//     name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
-//     price:6196.90,
-//     quantity:1,
-//     img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
-//     discount:35
-// },
-// {
-//     name:"Battery Operated Three Wheel Ride-on Bike -  Green BlueBattery Operated Three Wheel Ride-on Bike - Green Blue",
-//     price:6196.90,
-//     quantity:1,
-//     img:"https://cdn.fcglcdn.com/brainbees/images/products/thumb/10307320a.webp",
-//     discount:35
-// }
-// ]
 
 
 
@@ -55,43 +39,50 @@ export const Cart = () => {
 
    const handelDelete = (id) => {
       console.log(id)
-      fetch('http://localhost:7300/cart/cartdelete/' + id, {
+      fetch('https://lonely-long-johns-fish.cyclic.app/cart/cartdelete/' + id, {
          method: 'DELETE',
          headers: {
             "authorization": localStorage.getItem('token') //***To varify token*** */
          }
-      }).then(res => res.text()) 
-      .then(res =>{
-          console.log(res)
-          alert('Product Removed From Cart !')
-          setCount(count+1)
-      })
-  };
+      }).then(res => res.text())
+         .then(res => {
+            console.log(res)
+            toast({
+               title: "Product Removed From Cart !",
+               position: "bottom",
+               isClosable: true,
+               status: 'warning'
+            })
+            // alert('Product Removed From Cart !')
+            setCount(count + 1)
+         })
+   };
 
 
 
    const GetCart = () => {
-      fetch('http://localhost:7300/cart/', {
+      fetch('https://lonely-long-johns-fish.cyclic.app/cart/', {
          headers: {
             "authorization": localStorage.getItem('token') //***To varify token*** */
          },
 
-         body:JSON.stringify()
-   }).then(res => res.json())
-     .then(res => 
-            {console.log(res)
+         body: JSON.stringify()
+      }).then(res => res.json())
+         .then(res => {
+            console.log(res)
             setTotal(res.total)
             setPro(res.data)
             setPrice(res.price)
-            setdiscount(res.discount)}
-            )
-     .catch(err => console.log(err))
-}
+            setdiscount(res.discount)
+         }
+         )
+         .catch(err => console.log(err))
+   }
 
 
- useEffect(()=>{
-   GetCart()
-},[count])
+   useEffect(() => {
+      GetCart()
+   }, [count])
 
 
 
