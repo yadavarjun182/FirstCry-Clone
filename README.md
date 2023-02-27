@@ -28,16 +28,15 @@ Roaming Angels is a clone of Fristcry.com which is an E-Commerce Website for bab
 ## Few screenshots from our website :
 
 <div>
-  * Home :
+   Home :
   <img src="https://cdn-images-1.medium.com/max/1000/1*1_e4fnuGenG-jKrXOjLpeQ.png" alt="12" border="0" />
   <img src="https://cdn-images-1.medium.com/max/1000/1*AN5lILRbJ36nGpObweY4Mw.png" alt="14" border="0" />
-  * Admin Product Page :
+   Admin Product Page :
   <img src="https://cdn-images-1.medium.com/max/1000/1*q551k3EhYtF4uOddNT3RLw.png" alt="14" border="0" />
-  * Product Page :
+   Product Page :
   <img src="https://cdn-images-1.medium.com/max/1000/1*fXkwJvfKJb0f_BDP-BXe2Q.png" alt="14" border="0" />
-  * Cart :
+   Cart :
   <img src="https://cdn-images-1.medium.com/max/1000/1*e7f8p_e6hN2FSfoE7_bZkQ.png" alt="14" border="0" />
-  * Mobile Snaps 
   <img src="https://cdn-images-1.medium.com/max/1000/1*TRaGmUt-cGfWpy3Zu37Btw.png" alt="14" border="0" />
   <img src="https://cdn-images-1.medium.com/max/1000/1*yzhlrZeMTe4E1np2c_GNxQ.jpeg" alt="14" border="0" />
   <img src="https://cdn-images-1.medium.com/max/1000/1*iSXiY1WbMx0Maf70GtF8kA.png" alt="14" border="0" />
