@@ -22,7 +22,7 @@ export const Productform = () => {
 
   const addtoDBS = (payload) => {
 
-    fetch('http://localhost:7300/products/add',{
+    fetch('https://lonely-long-johns-fish.cyclic.app/products/add',{
         method:'POST',
         headers:{
             "Content-type":"application/json",

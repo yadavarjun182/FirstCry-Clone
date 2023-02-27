@@ -32,7 +32,7 @@ export default function AdminLogin() {
         const adminData = { username, password };
         console.log(adminData);
       if(validate()){
-        fetch("http://localhost:7300/admin/login",{
+        fetch("https://lonely-long-johns-fish.cyclic.app/admin/login",{
           method:"POST",
           headers:{'content-type':'application/json'},
           body:JSON.stringify(adminData)

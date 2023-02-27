@@ -14,7 +14,7 @@ export const Login = () => {
   const toast = useToast()
 
   const GotoLogin = async (payload) => {
-    fetch('http://localhost:7300/users/login', {
+    fetch('https://lonely-long-johns-fish.cyclic.app/users/login', {
       method: 'POST',
       headers: {
         "Content-type": "application/json"
@@ -26,7 +26,7 @@ export const Login = () => {
         localStorage.setItem('token', res.token)
         toast({
           title: res.msg || res.err,
-          position: "top",
+          position: "bottom",
           isClosable: true,
           status: res.msg ? 'success' : 'warning'
         })

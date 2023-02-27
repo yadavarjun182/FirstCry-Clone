@@ -21,12 +21,11 @@ import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineSearch } from 'react-ic
 import { Link } from "react-router-dom";
 import Navbar2 from "./Navbar2";
 import NavLink from "./NavLink";
-import { useEffect, useState } from "react";
 
 const Links = [
-  { name: "BOYS FASHION", id: "/" },
-  { name: "GIRLS FASHION", id: "/" },
-  { name: "FOOTWEAR", id: "/" },
+  { name: "BOYS FASHION", id: "/products" },
+  { name: "GIRLS FASHION", id: "/products" },
+  { name: "FOOTWEAR", id: "/products" },
   { name: "LOGIN", id: "/login" },
 
 
@@ -34,15 +33,15 @@ const Links = [
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-    //const [login,Setlogout]=useState(false)
-    const token=localStorage.getItem("token")
-    //useEffect=(() =>
-    //{
-    //},[token])
+  //const [login,Setlogout]=useState(false)
+  const token = localStorage.getItem("token")
+  //useEffect=(() =>
+  //{
+  //},[token])
   const handlelogout = () => {
     //Setlogout(true)
-      localStorage.clear()
-      window.location.reload()
+    localStorage.clear()
+    window.location.reload()
   }
 
   return (
@@ -74,7 +73,7 @@ export default function Navbar() {
           <Flex alignItems={"center"} m="auto" >
             <UnorderedList display={{ base: "none", md: "flex" }} listStyleType="none" gap={2} fontSize={12}>
               <ListItem display={'flex'} gap={1} pt={1}><GoLocation /> Select location |</ListItem>
-              <ListItem pt={1}>Stores & Preschools |</ListItem>
+              {/* <ListItem pt={1}>Stores & Preschools |</ListItem> */}
               <ListItem pt={1}>Support |</ListItem>
               <ListItem pt={1}>Track Order |</ListItem>
               <ListItem pt={1}>FirstCry Parenting |</ListItem>
