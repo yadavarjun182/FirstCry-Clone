@@ -23,22 +23,26 @@ Roaming Angels is a clone of Fristcry.com which is an E-Commerce Website for bab
 ## Tech stacks used :
 
 
- **html** |  **css** |  **chakra-ui** |  **React** |  **Express** |  **MongoDB** |  **Chakra-UI** |  **nodejs** |  **express** |  **mongoose** | **mongodb Atlas**
+ **html** |  **css** |  **chakra-ui** |  **ReactJs** |  **ExpressJs** |  **MongoDB** |  **Chakra-UI** |  **nodeJs** |  **express** |  **mongoose** | **mongodb Atlas**
 
 ## Few screenshots from our website :
 
 <div>
-   Home :
+  <h4>Home :</h4>
   <img src="https://cdn-images-1.medium.com/max/1000/1*1_e4fnuGenG-jKrXOjLpeQ.png" alt="12" border="0" />
   <img src="https://cdn-images-1.medium.com/max/1000/1*AN5lILRbJ36nGpObweY4Mw.png" alt="14" border="0" />
-   Admin Product Page :
-  <img src="https://cdn-images-1.medium.com/max/1000/1*q551k3EhYtF4uOddNT3RLw.png" alt="14" border="0" />
-   Product Page :
+  <h4>Product Page :</h4>
   <img src="https://cdn-images-1.medium.com/max/1000/1*fXkwJvfKJb0f_BDP-BXe2Q.png" alt="14" border="0" />
-   Cart :
+  <h4>User Login: </h4>
+  <img src="https://cdn-images-1.medium.com/max/1000/1*gdCRJ11kcdBVseT3YwspqQ.png" alt="14" border="0" />
+  <h4>Cart Page:</h4>
   <img src="https://cdn-images-1.medium.com/max/1000/1*e7f8p_e6hN2FSfoE7_bZkQ.png" alt="14" border="0" />
+  <h4>Mobile Screen Snap:</h4>
   <img src="https://cdn-images-1.medium.com/max/1000/1*TRaGmUt-cGfWpy3Zu37Btw.png" alt="14" border="0" />
   <img src="https://cdn-images-1.medium.com/max/1000/1*yzhlrZeMTe4E1np2c_GNxQ.jpeg" alt="14" border="0" />
+   <h4>Admin Page:</h4>
+  <img src="https://cdn-images-1.medium.com/max/1000/1*q551k3EhYtF4uOddNT3RLw.png" alt="14" border="0" />
+   <h4>Admin Customer Page:</h4>
   <img src="https://cdn-images-1.medium.com/max/1000/1*iSXiY1WbMx0Maf70GtF8kA.png" alt="14" border="0" />
   
 </div>
