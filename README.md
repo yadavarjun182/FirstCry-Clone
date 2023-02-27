@@ -64,20 +64,4 @@ In this project we have made the foolowing things :
 - Learn to work in pressure.
 - Learn to tackle problems and how to keep our-self motivated.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Thank You
