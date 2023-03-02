@@ -13,7 +13,8 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+import {useEffect} from 'react'
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { ChevronDownIcon } from "@chakra-ui/icons"
 import { GoLocation } from 'react-icons/go';
@@ -21,6 +22,7 @@ import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineSearch } from 'react-ic
 import { Link } from "react-router-dom";
 import Navbar2 from "./Navbar2";
 import NavLink from "./NavLink";
+
 
 const Links = [
   { name: "BOYS FASHION", id: "/products" },
@@ -43,10 +45,14 @@ export default function Navbar() {
     localStorage.clear()
     window.location.reload()
   }
+  
+  useEffect(()=>{
+   
+  },[token,handlelogout])
 
   return (
     <>
-      <Box bg={'white'} px={4} position='sticky' top={0} zIndex={999999999} m={'auto'} >
+      <Box bg={'white'} px={4} position='sticky' top={0} zIndex={999} m={'auto'} >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"} w='95%' m='auto'>
           <IconButton
             size={"md"}

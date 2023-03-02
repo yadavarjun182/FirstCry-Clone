@@ -14,9 +14,9 @@ cartRouter.get('/', async (req, res) => {
             let price = 0
             let discount = 0
             for (let i = 0; i < data.length; i++) {
-                total = total + data[i].mrp;
-                price = price + ((data[i].mrp + ((data[i].mrp * data[i].discount) / 100)))
-                discount = discount + ((data[i].mrp * data[i].discount) / 100)
+                total = total + (data[i].mrp*data[i].Cart_quantity);
+                price = price + (((data[i].mrp*data[i].Cart_quantity) + ((data[i].mrp * data[i].discount) / 100)))
+                discount = discount + (((data[i].mrp*data[i].Cart_quantity) * data[i].discount) / 100)
             }
             res.send({ 'data': data, 'total': total, "price": price, "discount": discount })
         }
@@ -30,13 +30,11 @@ cartRouter.get('/', async (req, res) => {
 cartRouter.post('/addtocart',async(req,res)=>{
 
     try{
-        const product = req.body
-        //console.log('daaaaaaaaaataaaaaaa',req.body)
-        //console.log('product',product)
-        //let data = await CartModel.find({title:product.title})
-        let data = await CartModel.find({$and:[{title:product.title},{user:product.user}]})
-        console.log('data',data)
-        if(data.length > 0){
+        const product = req.body;
+        let data = await CartModel.find({title:product.title,user:product.user})
+        console.log('data===',data)
+        console.log(data.user,'===',product.user)
+        if( data.length > 0){
             res.send({"msg":'Product present in Cart !'})
         }
         else{
@@ -77,6 +75,21 @@ cartRouter.delete('/cartdelete/:id', async (req, res) => {
         console.log(quary)
         const data = await CartModel.find({ user: quary })
         res.send(data)
+    }
+    catch (err) {
+        console.log(err.message)
+        res.send({ 'err': err.message })
+    }
+})
+
+
+cartRouter.delete('/payment/:id', async (req, res) => {
+  console.log(req.params.id,req.body)
+    try {
+        let id = req.params.id
+        console.log(id)
+        await CartModel.deleteMany({ user: req.body.user })
+        res.send('Product added in Order List !')
     }
     catch (err) {
         console.log(err.message)

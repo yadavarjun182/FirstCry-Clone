@@ -8,12 +8,13 @@ import { FiHeart } from "react-icons/fi";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { GiCardPickup } from "react-icons/gi";
 import { MdRecycling } from "react-icons/md";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { Payment } from "../PaymentPage";
 
 
 
 export const Cart = () => {
-
+   const [user,setUser] = useState([])
    const [pro, setPro] = useState([])
    const [total, setTotal] = useState(0)
    const [count, setCount] = useState(true)
@@ -22,15 +23,47 @@ export const Cart = () => {
    const toast = useToast()
    const navigate = useNavigate()
 
-   const payment = () => {
-      toast({
-         title: 'Order Placed successful !',
-         position: "top",
-         isClosable: true,
-         status: 'success'
-      })
-      return navigate("/")
+   const handelpayment = () => {
+         if(user[0].Address[0].city ===undefined || user[0].Address[0].add1===undefined || user[0].Address[0].pin===undefined || user[0].Address[0].add2===undefined
+           || user[0].Address[0].city ==='' || user[0].Address[0].add1==='' || user[0].Address[0].pin==='' || user[0].Address[0].add2===''
+            ){
+            alert('User Address Is Incomplete !!!')
+            return;
+          }
+         let Id = user[0]._id
+         console.log(Id)
+          fetch(`http://localhost:7300/cart/payment/${Id} `, {
+            method: 'DELETE',
+            headers: {
+               "authorization": localStorage.getItem('token') //***To varify token*** */
+            }
+         }).then(res => res.text())
+            .then(res => {
+               console.log(res)
+               alert('Payment Sucess ! Continue with shopping, Thank-you')
+               setCount(count + 1)
+               return navigate('/')
+            })
+         
    }
+
+   const getUser = () => {
+      fetch('http://localhost:7300/users/get', {
+         headers: {
+            "authorization": localStorage.getItem('token') //***To varify token*** */
+         },
+
+         body: JSON.stringify()
+      }).then(res => res.json())
+         .then(res => {
+            console.log("User :",res)
+            setUser(res)
+         }
+         )
+         .catch(err => console.log(err))
+   }
+
+   
 
    const handelQuantity = (x, id) => {
       console.log(id)
@@ -79,9 +112,34 @@ export const Cart = () => {
          .catch(err => console.log(err))
    }
 
+   const updateUser = (data) => {
+      console.log(data)
+     
+      if(data.add1==='' || data.pin==="" || data.add2==='' || data.city===''){
+       return(alert('Fill Information Correctly !'))
+      }
+
+      fetch('http://localhost:7300/users/profileupdate', {
+       method: 'POST',
+       headers: {
+         "Content-type": "application/json",
+         "authorization": localStorage.getItem('token')
+       },
+       body: JSON.stringify(data)
+     }).then(res => res.json())
+       .then(res => {
+           alert(res.msg)
+           setCount(count+1)
+       }
+ 
+       )
+       .catch(err => console.log(err))
+   }
+
 
    useEffect(() => {
       GetCart()
+      getUser()
    }, [count])
 
 
@@ -98,7 +156,7 @@ export const Cart = () => {
 
    return (
       <Box bg='#f3f3f3' pb='30px' pt='40px'>
-
+        
          <Flex w='90%' m='auto' justifyContent='space-around' flexDirection={{ base: 'column', md: 'row' }} >
             <Box w={{ base: '100%', md: '60%' }} m='auto' p='10px' boxShadow='xs' rounded='md' bg='white'>
                {pro && pro.map((ele) => (
@@ -107,14 +165,13 @@ export const Cart = () => {
 
                      <Flex gap='20px' p='10px' flexDirection={{ base: 'column', md: 'row' }} borderBottom='1px solid gray' borderTop='1px solid gray' >
                         <Box w={{ base: '90%', md: '18%' }} p='10px'>
-                           <Image m='auto' w='100%' src={ele.thumbnail} alt={ele.title} />
+                        <Image m='auto' w='100%' src={ele.thumbnail} alt={ele.title} />
                         </Box>
 
                         <Box w={{ base: '100%', md: '60%' }}>
                            <Text as='b'>{ele.title}</Text>
                            <Flex alignItems='center' gap='5px'><CiDeliveryTruck /> <Text>Get it by</Text>   <Text>{'Wednesday, Mar 01'}</Text></Flex>
                            <Text>Dispatch Within: 24 Hours</Text>
-
                         </Box>
 
                         <Box borderLeft='1px solid gray' pl='10px' w='25%' display={{ base: 'none', md: 'block' }}>
@@ -134,33 +191,21 @@ export const Cart = () => {
                         </Box>
 
                      </Flex>
-
                      <Flex gap='5px'>
                         <Button onClick={() => handelDelete(ele._id)} leftIcon={<RiDeleteBin6Line />} bg='transparent' variant='solid'>REMOVE</Button>
                         <Button leftIcon={<FiHeart />} bg='transparent' variant='solid'>MOVE TO SHORTLIST</Button>
                      </Flex>
-
                   </Box>
-
                ))}
 
                <Box>
 
                   <Flex gap='20px' flexDirection={{ base: 'column', md: 'row' }}>
-                     <Button size='md' w={{ base: '80%', md: '50%' }} colorScheme='orange'>
-                        {localStorage.getItem('token') ? "GO FOR PAYMENT" : "LOGIN TO PLACE ORDER"}
-                     </Button>
-
-                     <Button onClick={payment} size='md' w={{ base: '80%', md: '30%' }} bg='gray' alignItems='center' >
-                        <Flex justifyContent='space-between' gap='25px'>
-                           <Box >
-                              <Text fontSize='10px'>Total</Text>
-                              <Text>{total}.00</Text>
-                           </Box>
-                           <Text>PLACE ORDER</Text>
-                        </Flex>
-                     </Button>
-
+                   <Button onClick={handelpayment} size='md' w={{ base: '80%', md: '50%' }} colorScheme='orange'>
+                   GO FOR PAYMENT
+                   </Button>
+                  <Payment  updateUser={updateUser}/>  
+                      
                   </Flex>
                </Box>
 
@@ -209,6 +254,14 @@ export const Cart = () => {
                      <Text >Final Payment</Text>
                      <Flex alignItems='center'><BiRupee />{''}<Text>{Math.floor(total + (total * 0.18))}</Text></Flex>
                   </Flex>
+               </Box>
+
+               <Box bg='orange' p='5px'>
+                 <Text as='b'>Email: {user[0].email && user[0].email}</Text>
+                 <Divider/>
+                 <Text as='b'>Contact: {user[0].contact && user[0].contact}</Text>
+                 <Divider/>
+                 <Text>Address: {user[0].Address[0].city && user[0].Address[0].city}:{user[0].Address[0].pin && user[0].Address[0].pin}</Text>
                </Box>
 
             </Box>

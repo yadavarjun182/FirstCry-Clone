@@ -35,7 +35,7 @@ export const Sidebar = () => {
     }
     setGender(newgender)
   }
-  console.log(gender)
+  //console.log(gender)
 
   const handlerateFilter = (e) => {
     let newrating = [...rating]
@@ -46,7 +46,7 @@ export const Sidebar = () => {
     }
     setRating(newrating)
   }
-  console.log(rating)
+  //console.log(rating)
 
   const handlepriceFilter = (e) => {
     let newpricing = [...mrp]
@@ -57,7 +57,7 @@ export const Sidebar = () => {
     }
     setMrp(newpricing)
   }
-  console.log(mrp)
+  //console.log(mrp)
 
   const handlediscountFilter = (e) => {
     let newdiscount = [...discount]
@@ -68,7 +68,7 @@ export const Sidebar = () => {
     }
     setDiscount(newdiscount)
   }
-  console.log(discount)
+  //console.log(discount)
 
 
   useEffect(() => {

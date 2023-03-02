@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 export default function Navbar2() {
   return (
     <Box >
-      <Box bg={"#ffd91c"} px={4} position={'sticky'} top='4rem' zIndex={9999}>
+      <Box bg={"#ffd91c"} px={4} position={'sticky'} top='4rem' zIndex={99}>
         <Box w={"95%"} m="auto">
           <UnorderedList display={{ base: "none", md: "flex" }} h={16} alignItems={"center"} fontWeight={500} listStyleType="none" justifyContent={"space-between"} w={"95%"} m="auto" alignContent={"center"}>
             <Link to="/products">

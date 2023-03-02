@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Box, Text, Input, FormLabel } from '@chakra-ui/react';
+import { Box, Text, Input, FormLabel,Image} from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { useToast } from '@chakra-ui/react';
-
+import logo from '../../images/logo.jpg'
 
 let user = {
   name: '',
@@ -63,12 +63,9 @@ export const Register = () => {
   return (
 
 
-    <Box w={{ base: "90%", md: '25%' }} m='auto' p='20px' h={"100vh"} mt={{ base: "10px", md: 30 }}>
-      {/*<Image  w='250px'm='auto' src={logo} alt='first cry' />*/}
-
-      <br />
+    <Box w={{ base: "90%", md: '25%' }} m='auto' p='20px' h={"100vh"} >
+      <Image  w='250px'm='auto' src={logo} alt='first cry' />
       <Text fontSize='2xl' as='b'>Register</Text>
-      <br /><br />
       <form onSubmit={handelsubmit} >
         <FormLabel fontSize='sm' color='gray' >Full Name</FormLabel>
         <Input onChange={handelChange} name='name' value={User.name} placeholder='Enter Your Full Name' size='md' />
@@ -84,8 +81,6 @@ export const Register = () => {
         <br /><br />
         <Input type='submit' size='md' bg='orange' />
       </form>
-      <br />
-      <br />
       <Link to='/login' >
         <Text fontSize='sm' color='blue' mt='20px'>Already have account ? Login Here</Text>
       </Link>

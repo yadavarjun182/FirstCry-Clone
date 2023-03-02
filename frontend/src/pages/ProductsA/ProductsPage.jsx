@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useToast } from '@chakra-ui/react';
 import { BiRupee } from "react-icons/bi";
-import { Box, Flex, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, Image, SimpleGrid} from '@chakra-ui/react';
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { Sidebar } from "./sidebar";
 import axios from "axios"
@@ -9,7 +9,6 @@ import { useLocation, useParams } from "react-router-dom";
 
 
 let four = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStar size='13px' />]
-// let five = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />]
 let fournhalf = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarHalf size='13px' />]
 let two = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStar size='13px' />, <BsStar size='13px' />, <BsStar size='13px' />]
 let one = [<BsStarFill size='13px' />, <BsStar size='13px' />, <BsStar size='13px' />, <BsStar size='13px' />, <BsStar size='13px' />]
@@ -17,16 +16,17 @@ let three = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill
 let threenhalf = [<BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarFill size='13px' />, <BsStarHalf size='13px' />, <BsStar size='13px' />]
 
 const ProductsPage = () => {
-
+  
+  const [loading, setLoading] = useState(true)
   const [ProdArr, setProdArr] = useState([])
   const location = useLocation()
   console.log(location.search)
   const toast = useToast()
   const params = useParams()
-  console.log(params)
+  
 
 
-  const AddtoCart = async (payload) => {
+  const AddtoCart = (payload) => {
 
     let data = {
       title: payload.title,
@@ -36,7 +36,18 @@ const ProductsPage = () => {
       discount: payload.discount
     }
 
-    fetch('https://lonely-long-johns-fish.cyclic.app/cart/addtocart', {
+    if(!localStorage.getItem('token')){
+         return(
+          toast({
+            title: 'User Needs to Login First !',
+            position: "bottom",
+            isClosable: true,
+            status: 'warning'
+          })
+         ) 
+    }
+
+    fetch('http://localhost:7300/cart/addtocart', {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
@@ -46,7 +57,7 @@ const ProductsPage = () => {
     }).then(res => res.json())
       .then(res => {
         {
-          alert(res.msg)
+          // alert(res.msg)
           toast({
             title: res.msg,
             position: "bottom",
@@ -54,24 +65,26 @@ const ProductsPage = () => {
             status: 'warning'
           })
         }
-        // alert('Product is Added to  Cart !')
       }
 
       )
       .catch(err => console.log(err))
   }
 
+
   const getAllProducts = async () => {
 
     if (location) {
       await axios.get(`https://lonely-long-johns-fish.cyclic.app/products/get/${location.search}`).then((res) => {
         // console.log(res.data)
+        setLoading(false)
         setProdArr(res.data)
       })
     }
     else {
       await axios.get(`https://lonely-long-johns-fish.cyclic.app/products/get`).then((res) => {
         // console.log(res.data)
+        setLoading(false)
         setProdArr(res.data)
       })
     }
@@ -82,7 +95,14 @@ const ProductsPage = () => {
     getAllProducts()
   }, [location])
 
+  
 
+ if(loading === true)(
+    <Box p='20px' mt='30px' mb='50px' w='80%' m='auto' textAlign='center'>
+      <Image m='auto' src='https://cdn.dribbble.com/users/1293970/screenshots/3166571/media/c1fbfcab6c55fd5444aaa573c749bd79.gif' alt='Loaging.....' />
+      <Text fontSize='18px' fontWeight='bold'>Loading .....</Text>
+    </Box>
+ )
 
   return (
     <Box bg='#ffffff' mt='20px' mb='30px'>
@@ -98,10 +118,10 @@ const ProductsPage = () => {
               <Image m='auto' src='https://www.aamtrading.com/assets/img/nproduct.png ' alt='cart_is_empty' />
 
             </Box>
-          ) : <SimpleGrid columns={{ base: 2, md: 4 }} spacing='5px'>
+          ) : <SimpleGrid m='auto' columns={{ base: 2, md: 4 }} spacing='5px'>
 
             {ProdArr && ProdArr.map((ele) => (
-              <Box key={ele._id} p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
+              <Box  key={ele._id} p='10px' _hover={{ boxShadow: 'base', rounded: 'md', border: '1px solid gray' }}>
                 <Image w='100%' src={ele.thumbnail} alt={ele.title} />
                 <Text lineHeight='15px' fontSize='14px'>{ele.title}</Text>
                 <Text mt='5px' fontSize='12px' lineHeight='13px'>{ele.description}</Text>

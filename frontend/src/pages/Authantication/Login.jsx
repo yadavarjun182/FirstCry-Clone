@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Box, Text, Input, FormLabel, Divider } from '@chakra-ui/react';
+import { Box, Text, Input, FormLabel, Divider,Image } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Link, useNavigate } from "react-router-dom";
-
+import logo from '../../images/logo.jpg'
 
 let user = {
   email: '',
@@ -30,7 +30,9 @@ export const Login = () => {
           isClosable: true,
           status: res.msg ? 'success' : 'warning'
         })
-        return navigate("/")
+        if(res.msg){
+          return navigate("/")
+        }
       })
       .catch(err => console.log(err))
   }
@@ -51,7 +53,7 @@ export const Login = () => {
 
   return (
     <Box w={{ base: "90%", md: '25%' }} m='auto' h={"70vh"} mt={{ base: "10px", md: 30 }}>
-      {/*<Image  w='250px'm='auto' src={logo} alt='first cry' />*/}
+      <Image  w='250px'm='auto' src={logo} alt='first cry' />
 
 
       <Text fontSize='2xl' as='b' textAlign={'center'}>Login</Text>
