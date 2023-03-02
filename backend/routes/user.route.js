@@ -1,15 +1,20 @@
 const express = require("express")
 var cors = require('cors')
 const { UserModel } = require("../model/user.model")
+const {cartAuthanticate} = require ('../vmiddleware/cart.middleware.js')
 const userRouter = express.Router()
 const jwt=require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 
 
 
-userRouter.get("/get", async(req, res) => {
+
+
+userRouter.get("/get",cartAuthanticate,async(req,res) => {
+   // console.log('user++++',req.body)
     try{
-        const allusersdata = await UserModel.find()
+        let user_id = req.body.user
+        const allusersdata = await UserModel.find({_id:user_id})
         res.send(allusersdata)
     }catch(err){
         res.send({"err":err.message})
@@ -79,13 +84,24 @@ userRouter.post('/login',async(req,res)=>{
     
 //User info-------
 
- userRouter.patch('/profile',async(req,res) => {
+ userRouter.post('/profileupdate',cartAuthanticate,async(req,res) => {
+    console.log({'BODY':req.body})
      try{
         let payload = req.body;
-        console.log(payload)
-        let userMail = req.headers.email;
-        let User = await UserModel.findOneAndUpdate({email:userMail},payload)
-        console.log('user:',User)
+       // console.log('req===>',payload)
+         let user_id = req.body.user;
+          
+         let update = {
+        "Address":[{
+                     "city":req.body.city || '',
+                     "pin":req.body.pin || '',
+                     "add1":req.body.add1 || '',
+                     "add2":req.body.add2 || ''
+                   }]
+         }
+        //console.log({'id':user_id,"update":update})
+        let User = await UserModel.findOneAndUpdate({_id:user_id},update)
+         console.log('user:',User)
         res.send('user update sucess')
      }catch(err){
         res.send({'msg':'something went wrong','err':err})

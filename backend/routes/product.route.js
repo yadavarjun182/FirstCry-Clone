@@ -7,7 +7,7 @@ productRouter.get('/get', async (req, res) => {
     const query = req.query
     try {
         let data = await ProductModel.find(query)
-        console.log('Data count:', data.length)
+       // console.log('Data count:', data.length)
         res.status(200).send(data)
     } catch (err) {
         console.log({ "err": err.message })
@@ -36,7 +36,7 @@ productRouter.post('/add', async (req, res) => {
     try {
         const payload = req.body
         // const prodArr= ProductModel.insertMany()
-        console.log(payload)
+       // console.log(payload)
         const newproduct = new ProductModel(payload)
         await newproduct.save()
         console.log(newproduct)

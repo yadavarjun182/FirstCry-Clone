@@ -16,7 +16,8 @@ import Customers from "../Components/Admin/Pages/Customers/index";
 import Dashboard from "../Components/Admin/Pages/Dashbaord/index";
 import Inventory from "../Components/Admin/Pages/Inventory/index";
 import Orders from "../Components/Admin/Pages/Orders/index";
-import Home from "../pages/home"
+import Home from "../pages/home";
+import {Payment} from '../PaymentPage'
 
 
 
@@ -36,6 +37,7 @@ export const AllRouts = () => {
       <Route path="/adminInventory" element={<Inventory />}></Route>
       <Route path="/adminOrders" element={<Orders />}></Route>
       <Route path="/adminCustomers" element={<Customers />}></Route>
+       {/* <Route path="/payment" element={<Payment />}></Route>  */}
     </Routes>
   );
 };
